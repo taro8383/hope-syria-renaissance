@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import Interactive3DSyriaMap from '@/components/Interactive3DSyriaMap';
 
 const CrisisSection = () => {
   const crisisData = [
@@ -39,6 +40,11 @@ const CrisisSection = () => {
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           Over a decade of conflict has devastated Syria's healthcare system, leaving millions without access to essential medical services
         </p>
+      </div>
+
+      {/* 3D Interactive Syria Map */}
+      <div className="mb-16">
+        <Interactive3DSyriaMap />
       </div>
 
       <div className="grid md:grid-cols-3 gap-8 mb-16">

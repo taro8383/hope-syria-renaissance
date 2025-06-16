@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
 import StatsTicker from '@/components/StatsTicker';
 import LiveImpactCounter from '@/components/LiveImpactCounter';
+import CrisisUrgencyTimer from '@/components/CrisisUrgencyTimer';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +22,9 @@ const HeroSection = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 flex items-center justify-center overflow-hidden">
+      {/* Crisis Urgency Timer - Sticky */}
+      <CrisisUrgencyTimer position="sticky" showDetails={false} />
+      
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.3),transparent_70%)]"></div>
@@ -45,8 +49,13 @@ const HeroSection = () => {
           <StatsTicker />
         </div>
 
+        {/* Crisis Urgency Timer */}
+        <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} mb-8`}>
+          <CrisisUrgencyTimer showDetails={false} persuasionLevel="high" />
+        </div>
+
         {/* Live Impact Counter */}
-        <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} mb-12`}>
+        <div className={`transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} mb-12`}>
           <LiveImpactCounter showControls={false} compact={true} />
         </div>
 
