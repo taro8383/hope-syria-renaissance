@@ -3,8 +3,6 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 
 const ChooseAscenBio = () => {
   const [selectedPackage, setSelectedPackage] = useState('immediate');
@@ -15,7 +13,7 @@ const ChooseAscenBio = () => {
       approach: 'System rebuilding',
       timeline: 'Immediate deployment',
       focus: 'Sustainable capacity',
-      experience: 'Proven experience',
+      experience: 'System-building expertise',
       advantage: '15+ challenging markets'
     },
     traditional: {
@@ -165,7 +163,7 @@ const ChooseAscenBio = () => {
           Choose AscenBio
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Partner with proven expertise for sustainable healthcare system reconstruction
+          Partner with system-building expertise for sustainable healthcare reconstruction
         </p>
       </div>
 
@@ -330,49 +328,13 @@ const ChooseAscenBio = () => {
         </Card>
       </div>
 
-      {/* Contact Forms */}
-      <div className="grid md:grid-cols-3 gap-6">
-        <Card className="bg-slate-800 border-slate-700">
-          <CardHeader>
-            <CardTitle className="text-white text-lg">Request Partnership Proposal</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Input placeholder="Organization Name" className="bg-slate-700 border-slate-600 text-white" />
-            <Input placeholder="Contact Email" className="bg-slate-700 border-slate-600 text-white" />
-            <Textarea placeholder="Specific Requirements" className="bg-slate-700 border-slate-600 text-white" />
-            <Button className="w-full bg-teal-600 hover:bg-teal-700">
-              Request Proposal
-            </Button>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-slate-800 border-slate-700">
-          <CardHeader>
-            <CardTitle className="text-white text-lg">Schedule Capability Presentation</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Input placeholder="Preferred Date" type="date" className="bg-slate-700 border-slate-600 text-white" />
-            <Input placeholder="Number of Attendees" className="bg-slate-700 border-slate-600 text-white" />
-            <Textarea placeholder="Presentation Focus Areas" className="bg-slate-700 border-slate-600 text-white" />
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">
-              Schedule Presentation
-            </Button>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-slate-800 border-slate-700">
-          <CardHeader>
-            <CardTitle className="text-white text-lg">Discuss Syria-Specific Solutions</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Input placeholder="Your Role/Title" className="bg-slate-700 border-slate-600 text-white" />
-            <Input placeholder="Priority Challenges" className="bg-slate-700 border-slate-600 text-white" />
-            <Textarea placeholder="Specific Syria Context" className="bg-slate-700 border-slate-600 text-white" />
-            <Button className="w-full bg-green-600 hover:bg-green-700">
-              Schedule Consultation
-            </Button>
-          </CardContent>
-        </Card>
+      {/* Download Section */}
+      <div className="text-center mb-8">
+        <h3 className="text-3xl font-bold text-white mb-6">Complete Partnership Details</h3>
+        <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-12 py-4 text-lg">
+          Download the Full Report
+        </Button>
+        <p className="text-gray-400 mt-4">Comprehensive implementation plan and partnership framework</p>
       </div>
     </div>
   );

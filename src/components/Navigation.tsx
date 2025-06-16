@@ -14,7 +14,6 @@ const Navigation = ({ activeSection }: NavigationProps) => {
     { id: 'crisis', label: 'The Crisis' },
     { id: 'ascenbio-solution', label: 'AscenBio Solution' },
     { id: 'solution', label: 'The Solution' },
-    { id: 'track-record', label: 'Proven Track Record' },
     { id: 'catalog', label: 'Product Catalog' },
     { id: 'syria-advantage', label: 'Syria Advantage' },
     { id: 'implementation', label: 'Implementation' },

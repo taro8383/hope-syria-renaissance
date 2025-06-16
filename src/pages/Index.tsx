@@ -8,7 +8,6 @@ import Navigation from '@/components/Navigation';
 import CrisisSection from '@/components/CrisisSection';
 import AscenBioSolution from '@/components/AscenBioSolution';
 import SolutionSection from '@/components/SolutionSection';
-import ProvenTrackRecord from '@/components/ProvenTrackRecord';
 import ProductCatalog from '@/components/ProductCatalog';
 import SyriaAdvantage from '@/components/SyriaAdvantage';
 import ImplementationSection from '@/components/ImplementationSection';
@@ -21,7 +20,7 @@ const Index = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
-        'hero', 'crisis', 'ascenbio-solution', 'solution', 'track-record', 
+        'hero', 'crisis', 'ascenbio-solution', 'solution', 
         'catalog', 'syria-advantage', 'implementation', 'impact', 'choose-ascenbio'
       ];
       const scrollPosition = window.scrollY + 100;
@@ -62,23 +61,19 @@ const Index = () => {
         <SolutionSection />
       </section>
 
-      <section id="track-record" className="py-20 bg-slate-800">
-        <ProvenTrackRecord />
-      </section>
-
-      <section id="catalog" className="py-20">
+      <section id="catalog" className="py-20 bg-slate-800">
         <ProductCatalog />
       </section>
 
-      <section id="syria-advantage" className="py-20 bg-slate-800">
+      <section id="syria-advantage" className="py-20">
         <SyriaAdvantage />
       </section>
 
-      <section id="implementation" className="py-20">
+      <section id="implementation" className="py-20 bg-slate-800">
         <ImplementationSection />
       </section>
 
-      <section id="impact" className="py-20 bg-slate-800">
+      <section id="impact" className="py-20">
         <ImpactSection />
       </section>
 

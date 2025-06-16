@@ -4,17 +4,17 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const StatsTicker = () => {
   const [animatedStats, setAnimatedStats] = useState({
-    manufacturers: 0,
-    deployment: 0,
-    partnerships: 0,
-    markets: 0
+    assistance: 0,
+    hospitals: 0,
+    workforce: 0,
+    funding: 0
   });
 
   const targetStats = {
-    manufacturers: 500,
-    deployment: 75,
-    partnerships: 25,
-    markets: 15
+    assistance: 16.7,
+    hospitals: 57,
+    workforce: 70,
+    funding: 11
   };
 
   useEffect(() => {
@@ -24,10 +24,10 @@ const StatsTicker = () => {
 
     const timer = setInterval(() => {
       setAnimatedStats(prev => ({
-        manufacturers: Math.min(prev.manufacturers + targetStats.manufacturers / steps, targetStats.manufacturers),
-        deployment: Math.min(prev.deployment + targetStats.deployment / steps, targetStats.deployment),
-        partnerships: Math.min(prev.partnerships + targetStats.partnerships / steps, targetStats.partnerships),
-        markets: Math.min(prev.markets + targetStats.markets / steps, targetStats.markets)
+        assistance: Math.min(prev.assistance + targetStats.assistance / steps, targetStats.assistance),
+        hospitals: Math.min(prev.hospitals + targetStats.hospitals / steps, targetStats.hospitals),
+        workforce: Math.min(prev.workforce + targetStats.workforce / steps, targetStats.workforce),
+        funding: Math.min(prev.funding + targetStats.funding / steps, targetStats.funding)
       }));
     }, interval);
 
@@ -36,28 +36,28 @@ const StatsTicker = () => {
 
   const stats = [
     {
-      value: `${Math.round(animatedStats.manufacturers)}+`,
-      label: 'Direct Manufacturer Relationships',
-      description: 'Immediate Equipment Access',
-      color: 'text-teal-400'
+      value: `${animatedStats.assistance.toFixed(1)}M`,
+      label: 'Syrians Need Assistance',
+      description: 'Critical Healthcare Gap',
+      color: 'text-red-400'
     },
     {
-      value: `${Math.round(animatedStats.deployment)}%`,
-      label: 'Faster Deployment',
-      description: 'Weeks Not Months',
-      color: 'text-blue-400'
-    },
-    {
-      value: `${Math.round(animatedStats.partnerships)}+`,
-      label: 'University Partnerships',
-      description: 'Sustainable Local Capacity',
-      color: 'text-green-400'
-    },
-    {
-      value: `${Math.round(animatedStats.markets)}+`,
-      label: 'Challenging Markets',
-      description: 'Crisis-Resilient Logistics',
+      value: `${Math.round(animatedStats.hospitals)}%`,
+      label: 'Hospitals Non-Functional',
+      description: 'Infrastructure Destroyed',
       color: 'text-orange-400'
+    },
+    {
+      value: `${Math.round(animatedStats.workforce)}%`,
+      label: 'Healthcare Workforce Displaced',
+      description: 'Critical Staff Shortage',
+      color: 'text-yellow-400'
+    },
+    {
+      value: `${Math.round(animatedStats.funding)}%`,
+      label: 'Funding Gap ($2B Total)',
+      description: 'Massive Investment Needed',
+      color: 'text-blue-400'
     }
   ];
 
