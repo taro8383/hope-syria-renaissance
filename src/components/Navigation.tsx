@@ -12,11 +12,14 @@ const Navigation = ({ activeSection }: NavigationProps) => {
 
   const navigationItems = [
     { id: 'crisis', label: 'The Crisis' },
+    { id: 'ascenbio-solution', label: 'AscenBio Solution' },
     { id: 'solution', label: 'The Solution' },
+    { id: 'track-record', label: 'Proven Track Record' },
     { id: 'catalog', label: 'Product Catalog' },
+    { id: 'syria-advantage', label: 'Syria Advantage' },
     { id: 'implementation', label: 'Implementation' },
     { id: 'impact', label: 'Impact' },
-    { id: 'action', label: 'Take Action' }
+    { id: 'choose-ascenbio', label: 'Choose AscenBio' }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -35,16 +38,16 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             className="text-xl font-bold text-teal-400 cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
-            Syria Healthcare Reconstruction
+            AscenBio Healthcare Solutions
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6">
             {navigationItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`text-sm font-medium transition-colors hover:text-teal-400 ${
+                className={`text-xs font-medium transition-colors hover:text-teal-400 ${
                   activeSection === item.id ? 'text-teal-400' : 'text-gray-300'
                 }`}
               >
@@ -55,7 +58,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="lg:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -64,7 +67,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-slate-700">
+          <div className="lg:hidden py-4 border-t border-slate-700">
             {navigationItems.map((item) => (
               <button
                 key={item.id}

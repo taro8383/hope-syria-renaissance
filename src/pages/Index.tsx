@@ -6,18 +6,24 @@ import { ArrowDown } from 'lucide-react';
 import HeroSection from '@/components/HeroSection';
 import Navigation from '@/components/Navigation';
 import CrisisSection from '@/components/CrisisSection';
+import AscenBioSolution from '@/components/AscenBioSolution';
 import SolutionSection from '@/components/SolutionSection';
+import ProvenTrackRecord from '@/components/ProvenTrackRecord';
 import ProductCatalog from '@/components/ProductCatalog';
+import SyriaAdvantage from '@/components/SyriaAdvantage';
 import ImplementationSection from '@/components/ImplementationSection';
 import ImpactSection from '@/components/ImpactSection';
-import ActionSection from '@/components/ActionSection';
+import ChooseAscenBio from '@/components/ChooseAscenBio';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'crisis', 'solution', 'catalog', 'implementation', 'impact', 'action'];
+      const sections = [
+        'hero', 'crisis', 'ascenbio-solution', 'solution', 'track-record', 
+        'catalog', 'syria-advantage', 'implementation', 'impact', 'choose-ascenbio'
+      ];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -48,24 +54,36 @@ const Index = () => {
         <CrisisSection />
       </section>
 
-      <section id="solution" className="py-20 bg-slate-800">
+      <section id="ascenbio-solution" className="py-20 bg-slate-800">
+        <AscenBioSolution />
+      </section>
+
+      <section id="solution" className="py-20">
         <SolutionSection />
+      </section>
+
+      <section id="track-record" className="py-20 bg-slate-800">
+        <ProvenTrackRecord />
       </section>
 
       <section id="catalog" className="py-20">
         <ProductCatalog />
       </section>
 
-      <section id="implementation" className="py-20 bg-slate-800">
+      <section id="syria-advantage" className="py-20 bg-slate-800">
+        <SyriaAdvantage />
+      </section>
+
+      <section id="implementation" className="py-20">
         <ImplementationSection />
       </section>
 
-      <section id="impact" className="py-20">
+      <section id="impact" className="py-20 bg-slate-800">
         <ImpactSection />
       </section>
 
-      <section id="action" className="py-20 bg-gradient-to-r from-blue-900 to-teal-900">
-        <ActionSection />
+      <section id="choose-ascenbio" className="py-20 bg-gradient-to-r from-blue-900 to-teal-900">
+        <ChooseAscenBio />
       </section>
     </div>
   );

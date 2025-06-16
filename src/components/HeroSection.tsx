@@ -29,17 +29,20 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 text-center relative z-10 pt-16">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-teal-200 bg-clip-text text-transparent">
-            Rebuilding Hope
+            While Others Sell Products,
           </h1>
-          <h2 className="text-2xl md:text-4xl text-blue-200 mb-8 font-light">
-            Syria's Healthcare Renaissance
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-teal-200 to-green-200 bg-clip-text text-transparent">
+            We Rebuild Healthcare Systems
           </h2>
+          <p className="text-2xl md:text-3xl text-blue-200 mb-8 font-light">
+            Your Challenge is Our Specialty - Syria Healthcare Reconstruction
+          </p>
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            An $800M strategic opportunity to rebuild Syria's healthcare system through innovative Chinese capabilities and international partnerships
+            AscenBio brings proven system-building expertise from challenging markets across Latin America to Syria's healthcare reconstruction
           </p>
         </div>
 
-        {/* Live Statistics Ticker */}
+        {/* AscenBio Value Propositions Ticker */}
         <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <StatsTicker />
         </div>
@@ -50,17 +53,17 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
-              onClick={() => scrollToSection('catalog')}
+              onClick={() => scrollToSection('ascenbio-solution')}
             >
-              Explore Solutions
+              Discover AscenBio Advantage
             </Button>
             <Button 
               variant="outline" 
               size="lg" 
               className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-3"
-              onClick={() => scrollToSection('crisis')}
+              onClick={() => scrollToSection('proven-track-record')}
             >
-              Learn About the Crisis
+              See Proven Results
             </Button>
           </div>
         </div>
