@@ -195,85 +195,81 @@ const ChooseAscenBioSection = () => {
                 <ul className="space-y-2">
                   {partnershipPackages[selectedPackage].deliverables.map((deliverable, index) => (
                     <li key={index} className="flex items-start text-gray-300">
-                      <span className="w-2 h-2 bg-blueI'll transform the microsite from an investor-focused platform to a partnership proposal platform for AscenBio. Let me make these comprehensive updates to reposition the site appropriately.
-
-<lov-code>
-First, I'll update the hero section with the new messaging and value propositions:
-
-<lov-write file_path="src/components/HeroSection.tsx">
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
-import StatsTicker from '@/components/StatsTicker';
-
-const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-teal-900 flex items-center justify-center overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(56,189,248,0.3),transparent_70%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(34,197,94,0.2),transparent_70%)]"></div>
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      {deliverable}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-green-400 mb-4">Expected Outcomes</h4>
+                <ul className="space-y-2">
+                  {partnershipPackages[selectedPackage].outcomes.map((outcome, index) => (
+                    <li key={index} className="flex items-start text-gray-300">
+                      <span className="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      {outcome}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <div className="container mx-auto px-4 text-center relative z-10 pt-16">
-        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-teal-200 bg-clip-text text-transparent">
-            While Others Sell Products,<br />We Rebuild Healthcare Systems
-          </h1>
-          <h2 className="text-xl md:text-3xl text-blue-200 mb-8 font-light">
-            Your Challenge is Our Specialty - Syria Healthcare Reconstruction
-          </h2>
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            AscenBio combines direct manufacturer relationships, technical expertise, and proven experience in challenging markets to deliver sustainable healthcare solutions
-          </p>
+      {/* Partnership Process Timeline */}
+      <div className="mb-16">
+        <h3 className="text-3xl font-bold text-white mb-8 text-center">Partnership Process</h3>
+        <div className="space-y-6">
+          {processPhases.map((phase, index) => (
+            <Card key={index} className="bg-slate-800 border-slate-700">
+              <CardContent className="p-6">
+                <div className="flex items-start gap-6">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-teal-600 rounded-full flex items-center justify-center text-white font-bold">
+                      {index + 1}
+                    </div>
+                  </div>
+                  <div className="flex-grow">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                      <h4 className="text-xl font-semibold text-white">{phase.phase}</h4>
+                      <Badge variant="outline" className="border-blue-400 text-blue-400 w-fit">
+                        {phase.duration}
+                      </Badge>
+                    </div>
+                    <p className="text-gray-300 mb-4">{phase.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {phase.activities.map((activity, actIndex) => (
+                        <Badge key={actIndex} className="bg-slate-700 text-gray-300">
+                          {activity}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
+      </div>
 
-        {/* AscenBio Value Propositions Ticker */}
-        <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <StatsTicker />
-        </div>
-
-        {/* Call to Action */}
-        <div className={`transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
-            <Button 
-              size="lg" 
-              className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
-              onClick={() => scrollToSection('ascenbio-solution')}
-            >
-              Discover AscenBio Advantage
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white px-8 py-3"
-              onClick={() => scrollToSection('track-record')}
-            >
-              See Proven Results
-            </Button>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ArrowDown className="text-teal-400" size={32} />
+      {/* Contact Section */}
+      <div className="text-center mb-8">
+        <h3 className="text-3xl font-bold text-white mb-6">Start Your Partnership</h3>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white">
+            Request Partnership Proposal
+          </Button>
+          <Button variant="outline" size="lg" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white">
+            Schedule Capability Presentation
+          </Button>
+          <Button variant="outline" size="lg" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white">
+            Discuss Syria-Specific Solutions
+          </Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default HeroSection;
+export default ChooseAscenBioSection;
