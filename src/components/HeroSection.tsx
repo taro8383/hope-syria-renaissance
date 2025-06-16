@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
 import StatsTicker from '@/components/StatsTicker';
+import LiveImpactCounter from '@/components/LiveImpactCounter';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,6 +43,11 @@ const HeroSection = () => {
         {/* Crisis Statistics Ticker */}
         <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <StatsTicker />
+        </div>
+
+        {/* Live Impact Counter */}
+        <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} mb-12`}>
+          <LiveImpactCounter showControls={false} compact={true} />
         </div>
 
         {/* Call to Action */}

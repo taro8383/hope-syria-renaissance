@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
+import TransformationDashboard from '@/components/TransformationDashboard';
 
 const ImpactSection = () => {
   const [investmentAmount, setInvestmentAmount] = useState([400]);
@@ -66,6 +67,9 @@ const ImpactSection = () => {
           Explore the transformative potential of healthcare investment in Syria
         </p>
       </div>
+
+      {/* Before/After Transformation Dashboard */}
+      <TransformationDashboard />
 
       {/* ROI Calculator */}
       <Card className="bg-slate-800 border-slate-700 mb-12">

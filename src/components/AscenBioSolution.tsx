@@ -2,301 +2,158 @@
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
+import SpeedComparisonChart from '@/components/SpeedComparisonChart';
 
 const AscenBioSolution = () => {
   const [activePillar, setActivePillar] = useState('manufacturing');
 
-  const manufacturingData = [
-    { 
-      region: 'Asia-Pacific', 
-      suppliers: 180, 
-      specialties: ['Diagnostics', 'Medical Devices', 'Pharmaceuticals'],
-      deploymentTime: '2-3 weeks'
+  const pillars = {
+    manufacturing: {
+      title: 'Manufacturing Network Access',
+      description: 'Direct relationships with 140+ Chinese manufacturers for immediate equipment access',
+      features: [
+        'Speed comparison: AscenBio (weeks) vs Traditional (months)',
+        'Volume purchasing advantages through established relationships',
+        'Quality assurance from certified manufacturer partnerships',
+        'Immediate access to essential medical equipment'
+      ],
+      metrics: {
+        suppliers: '140+',
+        timeAdvantage: '75% faster',
+        costSavings: '30-40%',
+        qualityScore: '98%'
+      }
     },
-    { 
-      region: 'Europe', 
-      suppliers: 125, 
-      specialties: ['Advanced Equipment', 'Digital Health', 'Biotechnology'],
-      deploymentTime: '3-4 weeks'
+    technical: {
+      title: 'Technical Service Excellence',
+      description: 'Comprehensive support systems for sustainable healthcare delivery',
+      features: [
+        '5-year local capacity building progression',
+        'Interactive technician development pathways',
+        'Equipment lifecycle maintenance support',
+        'Skills transfer and retention strategies'
+      ],
+      metrics: {
+        retention: '85%',
+        sustainability: '5 years',
+        training: '90%',
+        support: '24/7'
+      }
     },
-    { 
-      region: 'Americas', 
-      suppliers: 95, 
-      specialties: ['Emergency Equipment', 'Consumables', 'Infrastructure'],
-      deploymentTime: '2-3 weeks'
-    },
-    { 
-      region: 'Middle East', 
-      suppliers: 60, 
-      specialties: ['Regional Adaptation', 'Climate Solutions', 'Local Support'],
-      deploymentTime: '1-2 weeks'
+    human: {
+      title: 'Human Capital Solutions',
+      description: 'Building sustainable local healthcare workforce and capacity',
+      features: [
+        'University partnership network development',
+        'Professional development career paths',
+        'International exchange programs',
+        'Community healthcare program implementation'
+      ],
+      metrics: {
+        partnerships: '25+',
+        professionals: '500+',
+        retention: '80%',
+        communities: '100+'
+      }
     }
-  ];
-
-  const trainingPrograms = [
-    {
-      level: 'Basic Technician',
-      duration: '3 months',
-      capacity: '50 people/cycle',
-      certification: 'AscenBio Certified',
-      retention: '85%'
-    },
-    {
-      level: 'Advanced Specialist',
-      duration: '6 months', 
-      capacity: '25 people/cycle',
-      certification: 'International Standard',
-      retention: '92%'
-    },
-    {
-      level: 'Trainer Certification',
-      duration: '12 months',
-      capacity: '10 people/cycle',
-      certification: 'Master Trainer',
-      retention: '98%'
-    }
-  ];
-
-  const universityPartnerships = [
-    {
-      university: 'Universidad Nacional Colombia',
-      programs: ['Medical Engineering', 'Healthcare Management'],
-      students: 200,
-      research: 'Medical Device Innovation'
-    },
-    {
-      university: 'Instituto Tecnológico Mexico',
-      programs: ['Biomedical Technology', 'Public Health'],
-      students: 150,
-      research: 'Rural Healthcare Delivery'
-    },
-    {
-      university: 'Universidad de Chile',
-      programs: ['Healthcare Systems', 'Medical Informatics'],
-      students: 180,
-      research: 'Digital Health Solutions'
-    }
-  ];
+  };
 
   return (
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-          The AscenBio Solution
+          The AscenBio Advantage
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Three pillars of excellence that transform healthcare reconstruction from product supply to system building
+          AscenBio brings system-building expertise from challenging markets across Latin America to Syria's healthcare reconstruction
         </p>
       </div>
 
-      <Tabs value={activePillar} onValueChange={setActivePillar} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-slate-800 mb-8">
-          <TabsTrigger value="manufacturing" className="text-sm">Manufacturing Network</TabsTrigger>
-          <TabsTrigger value="technical" className="text-sm">Technical Excellence</TabsTrigger>
-          <TabsTrigger value="human-capital" className="text-sm">Human Capital</TabsTrigger>
-        </TabsList>
+      {/* Three Pillar Navigation */}
+      <div className="grid md:grid-cols-3 gap-4 mb-12">
+        {Object.entries(pillars).map(([key, pillar]) => (
+          <Button
+            key={key}
+            variant={activePillar === key ? "default" : "outline"}
+            className={`h-20 p-4 text-center transition-all duration-300 ${
+              activePillar === key 
+                ? 'bg-teal-600 hover:bg-teal-700 text-white border-teal-600' 
+                : 'bg-slate-800 border-slate-600 text-gray-300 hover:bg-slate-700'
+            }`}
+            onClick={() => setActivePillar(key)}
+          >
+            <div>
+              <div className="font-bold text-sm mb-1">{pillar.title}</div>
+              <div className="text-xs opacity-80">{pillar.description.substring(0, 50)}...</div>
+            </div>
+          </Button>
+        ))}
+      </div>
 
-        <TabsContent value="manufacturing" className="space-y-8">
+      {/* Active Pillar Content */}
+      <Card className="bg-slate-800 border-slate-700 mb-12">
+        <CardHeader>
+          <CardTitle className="text-white text-2xl">{pillars[activePillar as keyof typeof pillars].title}</CardTitle>
+          <p className="text-gray-300">{pillars[activePillar as keyof typeof pillars].description}</p>
+        </CardHeader>
+        <CardContent>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white text-xl">Global Supplier Network</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  {manufacturingData.map((region, index) => (
-                    <div key={index} className="border-l-4 border-teal-400 pl-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <h4 className="font-semibold text-white">{region.region}</h4>
-                        <span className="text-teal-400 font-bold">{region.suppliers} suppliers</span>
-                      </div>
-                      <div className="text-sm text-gray-300 mb-2">
-                        Deployment: <span className="text-green-400">{region.deploymentTime}</span>
-                      </div>
-                      <div className="flex gap-2 flex-wrap">
-                        {region.specialties.map((specialty, i) => (
-                          <span key={i} className="text-xs bg-slate-700 text-gray-300 px-2 py-1 rounded">
-                            {specialty}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white text-xl">Speed Advantage</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-teal-400 mb-2">75%</div>
-                    <div className="text-gray-300">Faster Deployment</div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm text-gray-300">AscenBio Network</span>
-                        <span className="text-sm text-teal-400">2-4 weeks</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div className="bg-teal-400 h-2 rounded-full" style={{width: '25%'}}></div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-sm text-gray-300">Traditional Procurement</span>
-                        <span className="text-sm text-red-400">6-12 months</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div className="bg-red-400 h-2 rounded-full" style={{width: '100%'}}></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-slate-700 p-4 rounded-lg">
-                    <h5 className="font-semibold text-white mb-2">Volume Purchasing Benefits</h5>
-                    <ul className="text-sm text-gray-300 space-y-1">
-                      <li>• 15-25% cost reduction through bulk purchasing</li>
-                      <li>• Priority allocation during supply constraints</li>
-                      <li>• Customized packaging and logistics</li>
-                      <li>• Extended warranty and support terms</li>
-                    </ul>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="technical" className="space-y-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white text-xl">Training Programs</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {trainingPrograms.map((program, index) => (
-                    <div key={index} className="bg-slate-700 p-4 rounded-lg">
-                      <div className="flex justify-between items-center mb-2">
-                        <h4 className="font-semibold text-white">{program.level}</h4>
-                        <span className="text-green-400 font-bold">{program.retention} retention</span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-sm text-gray-300">
-                        <div>Duration: {program.duration}</div>
-                        <div>Capacity: {program.capacity}</div>
-                        <div className="col-span-2">Certification: {program.certification}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-800 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-white text-xl">Sustainability Timeline</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {[
-                    { year: 'Year 1', milestone: 'Emergency equipment deployment + basic training', progress: 100 },
-                    { year: 'Year 2', milestone: 'Advanced technician certification programs', progress: 80 },
-                    { year: 'Year 3', milestone: 'Local maintenance and repair capabilities', progress: 60 },
-                    { year: 'Year 4', milestone: 'Trainer certification and knowledge transfer', progress: 40 },
-                    { year: 'Year 5', milestone: 'Full local operational independence', progress: 20 }
-                  ].map((item, index) => (
-                    <div key={index} className="relative">
-                      <div className="flex items-center mb-2">
-                        <div className="w-16 h-8 bg-teal-600 rounded flex items-center justify-center text-white text-xs font-bold mr-4">
-                          {item.year}
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-sm text-white">{item.milestone}</div>
-                          <div className="w-full bg-slate-700 rounded-full h-1 mt-1">
-                            <div 
-                              className="bg-teal-400 h-1 rounded-full transition-all duration-1000" 
-                              style={{width: `${item.progress}%`}}
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </TabsContent>
-
-        <TabsContent value="human-capital" className="space-y-8">
-          <Card className="bg-slate-800 border-slate-700">
-            <CardHeader>
-              <CardTitle className="text-white text-xl">University Partnership Network</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                {universityPartnerships.map((partnership, index) => (
-                  <div key={index} className="bg-slate-700 p-4 rounded-lg">
-                    <h4 className="font-semibold text-white mb-3">{partnership.university}</h4>
-                    <div className="space-y-2 text-sm">
-                      <div>
-                        <span className="text-gray-400">Students: </span>
-                        <span className="text-teal-400 font-semibold">{partnership.students}</span>
-                      </div>
-                      <div>
-                        <span className="text-gray-400">Research: </span>
-                        <span className="text-white">{partnership.research}</span>
-                      </div>
-                      <div className="mt-3">
-                        <span className="text-gray-400 text-xs">Programs:</span>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {partnership.programs.map((program, i) => (
-                            <span key={i} className="text-xs bg-slate-800 text-gray-300 px-2 py-1 rounded">
-                              {program}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+            <div>
+              <h4 className="text-lg font-semibold text-blue-400 mb-4">Key Features</h4>
+              <ul className="space-y-2">
+                {pillars[activePillar as keyof typeof pillars].features.map((feature, index) => (
+                  <li key={index} className="flex items-start text-gray-300">
+                    <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-lg font-semibold text-green-400 mb-4">Performance Metrics</h4>
+              <div className="grid grid-cols-2 gap-4">
+                {Object.entries(pillars[activePillar as keyof typeof pillars].metrics).map(([key, value]) => (
+                  <div key={key} className="bg-slate-700 p-3 rounded text-center">
+                    <div className="text-lg font-bold text-teal-400">{value}</div>
+                    <div className="text-xs text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1')}</div>
                   </div>
                 ))}
               </div>
-              
-              <div className="mt-8 bg-gradient-to-r from-teal-900/50 to-blue-900/50 p-6 rounded-lg">
-                <h4 className="font-semibold text-white mb-4">Professional Development Programs</h4>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h5 className="text-teal-400 font-medium mb-2">Returning Professionals</h5>
-                    <ul className="text-sm text-gray-300 space-y-1">
-                      <li>• Certification renewal and upgrading</li>
-                      <li>• Latest technology familiarization</li>
-                      <li>• Leadership and management training</li>
-                      <li>• International collaboration opportunities</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-blue-400 font-medium mb-2">Retention Strategies</h5>
-                    <ul className="text-sm text-gray-300 space-y-1">
-                      <li>• Competitive compensation packages</li>
-                      <li>• Housing and family support</li>
-                      <li>• Career advancement pathways</li>
-                      <li>• International exchange programs</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Speed Comparison Chart - Only show for Manufacturing pillar */}
+      {activePillar === 'manufacturing' && <SpeedComparisonChart />}
+
+      {/* Supplier Network Visualization */}
+      <Card className="bg-slate-800 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white text-xl">140+ Chinese Manufacturer Network</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-teal-400 mb-2">140+</div>
+              <div className="text-sm text-gray-300">Direct Manufacturer Relationships</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-400 mb-2">75%</div>
+              <div className="text-sm text-gray-300">Faster Deployment</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-green-400 mb-2">30-40%</div>
+              <div className="text-sm text-gray-300">Cost Savings</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-400 mb-2">98%</div>
+              <div className="text-sm text-gray-300">Quality Certification Rate</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import ROICalculator from '@/components/ROICalculator';
 
 const SyriaAdvantage = () => {
   const [selectedChallenge, setSelectedChallenge] = useState('infrastructure');
@@ -12,29 +13,25 @@ const SyriaAdvantage = () => {
       challenge: 'Destroyed healthcare infrastructure across 14 governorates',
       ascenBioSolution: 'Modular construction expertise with rapid deployment capability',
       advantage: 'Pre-established relationships with manufacturers enable 75% faster deployment',
-      timeline: 'Operational facilities in 4-6 weeks vs. 6-12 months traditional approach',
-      evidence: ['Colombia rural clinic deployment: 45 facilities in 18 months', 'Peru Amazon basin: 25 facilities despite geographic challenges']
+      timeline: 'Operational facilities in 4-6 weeks vs. 6-12 months traditional approach'
     },
     workforce: {
       challenge: '70% of healthcare workforce displaced or emigrated',
       ascenBioSolution: 'Comprehensive training programs with university partnerships',
-      advantage: 'Proven retention strategies from challenging markets (85-98% retention rates)',
-      timeline: 'Certified technicians in 3-6 months, full operational teams in 12 months',
-      evidence: ['Mexico: 320+ technicians trained with 88% retention', 'Guatemala: 90% improvement in treatment compliance through localized training']
+      advantage: 'Established retention strategies from challenging markets (85-98% retention rates)',
+      timeline: 'Certified technicians in 3-6 months, full operational teams in 12 months'
     },
     supply: {
       challenge: 'Unreliable supply chains and equipment maintenance gaps',
       ascenBioSolution: 'Direct manufacturer relationships and local technical service capability',
-      advantage: '500+ supplier network provides redundancy and negotiation power',
-      timeline: 'Emergency supplies within weeks, sustained supply chains within 6 months',
-      evidence: ['Venezuela border crisis: Maintained supplies during political instability', 'Peru Amazon: River-based logistics for remote communities']
+      advantage: '140+ supplier network provides redundancy and negotiation power',
+      timeline: 'Emergency supplies within weeks, sustained supply chains within 6 months'
     },
     sustainability: {
       challenge: 'Long-term operational and financial sustainability concerns',
       ascenBioSolution: 'University partnerships and knowledge transfer programs for self-sufficiency',
-      advantage: 'Proven 5-year transition pathway to 80% local funding and operation',
-      timeline: 'Revenue generation starts Year 2, 80% self-sufficiency by Year 5',
-      evidence: ['Chile: 15 locally-adapted health technologies developed', 'Colombia: 35% reduction in rural doctor shortage through specialized programs']
+      advantage: 'Demonstrated 5-year transition pathway to 80% local funding and operation',
+      timeline: 'Revenue generation starts Year 2, 80% self-sufficiency by Year 5'
     }
   };
 
@@ -47,7 +44,7 @@ const SyriaAdvantage = () => {
     },
     {
       factor: 'Supplier Access',
-      ascenBio: '500+ direct relationships',
+      ascenBio: '140+ direct relationships',
       traditional: 'Limited distributor network',
       advantage: 'Better pricing & availability'
     },
@@ -55,7 +52,7 @@ const SyriaAdvantage = () => {
       factor: 'Local Experience',
       ascenBio: '15+ challenging markets',
       traditional: 'Starting from scratch',
-      advantage: 'Proven crisis-resilient systems'
+      advantage: 'Crisis-resilient systems'
     },
     {
       factor: 'Training Retention',
@@ -65,7 +62,7 @@ const SyriaAdvantage = () => {
     },
     {
       factor: 'Cultural Adaptation',
-      ascenBio: 'Proven localization expertise',
+      ascenBio: 'Localization expertise',
       traditional: 'Generic international approach',
       advantage: 'Higher acceptance & utilization'
     }
@@ -77,7 +74,7 @@ const SyriaAdvantage = () => {
       level: 'High',
       ascenBioMitigation: 'Experience in Venezuela, Colombia conflict zones - established protocols for operating in unstable environments',
       traditionalApproach: 'Limited experience with political risks',
-      advantage: 'Proven crisis management protocols'
+      advantage: 'Crisis management protocols'
     },
     {
       risk: 'Supply Disruption',
@@ -89,7 +86,7 @@ const SyriaAdvantage = () => {
     {
       risk: 'Staff Turnover',
       level: 'Medium',
-      ascenBioMitigation: 'Comprehensive retention programs with proven 85-98% success rates',
+      ascenBioMitigation: 'Comprehensive retention programs with 85-98% success rates',
       traditionalApproach: 'Standard employment packages',
       advantage: '40% better retention rates'
     },
@@ -109,15 +106,18 @@ const SyriaAdvantage = () => {
           Syria Advantage
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Your Challenge is Our Specialty - Direct application of proven expertise to Syria's unique reconstruction needs
+          Your Challenge is Our Specialty - Direct application of expertise to Syria's unique reconstruction needs
         </p>
       </div>
+
+      {/* ROI Calculator */}
+      <ROICalculator />
 
       {/* Challenge-Solution Matching Tool */}
       <Card className="bg-slate-800 border-slate-700 mb-12">
         <CardHeader>
           <CardTitle className="text-white text-2xl text-center">Challenge-Solution Matching</CardTitle>
-          <p className="text-gray-300 text-center">Select a challenge to see how AscenBio's proven approach applies</p>
+          <p className="text-gray-300 text-center">Select a challenge to see how AscenBio's approach applies</p>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -157,15 +157,6 @@ const SyriaAdvantage = () => {
               <div>
                 <h4 className="font-semibold text-green-400 mb-2">Timeline:</h4>
                 <p className="text-gray-300">{challengeSolutions[selectedChallenge].timeline}</p>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold text-yellow-400 mb-2">Proven Evidence:</h4>
-                <ul className="text-gray-300 text-sm space-y-1">
-                  {challengeSolutions[selectedChallenge].evidence.map((evidence, index) => (
-                    <li key={index}>• {evidence}</li>
-                  ))}
-                </ul>
               </div>
             </div>
           </div>
