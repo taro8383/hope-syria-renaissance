@@ -1,13 +1,9 @@
 
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 const ChooseAscenBio = () => {
-  const [selectedPackage, setSelectedPackage] = useState('immediate');
-  const [currentPhase, setCurrentPhase] = useState(1);
-
   const partnershipComparison = {
     ascenBio: {
       approach: 'System rebuilding',
@@ -25,137 +21,6 @@ const ChooseAscenBio = () => {
     }
   };
 
-  const partnershipPackages = [
-    {
-      id: 'immediate',
-      name: 'Immediate Response Partnership',
-      duration: '6-12 months',
-      investment: '$75-150M',
-      description: 'Emergency deployment with rapid training programs',
-      keyDeliverables: [
-        'Mobile clinic deployment within 4 weeks',
-        'Emergency medical supplies distribution',
-        'Basic technician training (200+ people)',
-        'Telemedicine network establishment',
-        'Supply chain emergency protocols'
-      ],
-      outcomes: {
-        peopleServed: '500,000+',
-        facilitiesOperational: '50+',
-        trainedStaff: '200+',
-        timeToImpact: '4 weeks'
-      }
-    },
-    {
-      id: 'system-building',
-      name: 'System Building Partnership',
-      duration: '2-3 years',
-      investment: '$300-500M',
-      description: 'Infrastructure development with comprehensive capacity building',
-      keyDeliverables: [
-        'Permanent facility construction (100+ centers)',
-        'University partnership establishment',
-        'Advanced training programs (1000+ people)',
-        'Local manufacturing capability development',
-        'Quality assurance system implementation'
-      ],
-      outcomes: {
-        peopleServed: '2M+',
-        facilitiesOperational: '100+',
-        trainedStaff: '1000+',
-        timeToImpact: '6 months'
-      }
-    },
-    {
-      id: 'sustainability',
-      name: 'Sustainability Partnership',
-      duration: '3-5 years',
-      investment: '$150-250M',
-      description: 'Self-sufficiency transition with ongoing support',
-      keyDeliverables: [
-        'Revenue generation system implementation',
-        'Local leadership development',
-        'International partnership facilitation',
-        'Technology transfer completion',
-        'Ongoing technical support network'
-      ],
-      outcomes: {
-        peopleServed: '3M+',
-        facilitiesOperational: '150+',
-        trainedStaff: '1500+',
-        timeToImpact: '12 months'
-      }
-    }
-  ];
-
-  const processPhases = [
-    {
-      phase: 1,
-      name: 'Discovery Phase',
-      duration: '4-6 weeks',
-      activities: [
-        'Comprehensive needs assessment',
-        'Stakeholder mapping and engagement',
-        'Infrastructure damage evaluation',
-        'Local capacity assessment',
-        'Partnership framework development'
-      ],
-      deliverables: 'Detailed implementation roadmap and partnership proposal'
-    },
-    {
-      phase: 2,
-      name: 'Rapid Deployment',
-      duration: '8-12 weeks',
-      activities: [
-        'Emergency equipment deployment',
-        'Mobile clinic network establishment',
-        'Immediate training program launch',
-        'Supply chain activation',
-        'Quality assurance system setup'
-      ],
-      deliverables: 'Operational emergency healthcare network'
-    },
-    {
-      phase: 3,
-      name: 'Capacity Building',
-      duration: '12-18 months',
-      activities: [
-        'Permanent facility construction',
-        'Advanced training program implementation',
-        'University partnership activation',
-        'Local workforce development',
-        'Technology transfer initiation'
-      ],
-      deliverables: 'Self-sustaining healthcare system foundation'
-    },
-    {
-      phase: 4,
-      name: 'Sustainability Transition',
-      duration: '18-36 months',
-      activities: [
-        'Revenue generation system implementation',
-        'Local leadership transition',
-        'International partnership facilitation',
-        'Quality certification achievement',
-        'Operational independence preparation'
-      ],
-      deliverables: 'Financially sustainable healthcare system'
-    },
-    {
-      phase: 5,
-      name: 'Ongoing Partnership',
-      duration: 'Ongoing',
-      activities: [
-        'Technical support and consultation',
-        'Quality assurance monitoring',
-        'Continuous improvement support',
-        'International collaboration facilitation',
-        'Emergency response backup'
-      ],
-      deliverables: 'Long-term partnership and support network'
-    }
-  ];
-
   return (
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
@@ -163,14 +28,14 @@ const ChooseAscenBio = () => {
           Choose AscenBio
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Partner with system-building expertise for sustainable healthcare reconstruction
+          Your Strategic Healthcare Reconstruction Partner
         </p>
       </div>
 
       {/* Partnership Comparison Tool */}
       <Card className="bg-slate-800 border-slate-700 mb-12">
         <CardHeader>
-          <CardTitle className="text-white text-2xl text-center">Partnership Model Comparison</CardTitle>
+          <CardTitle className="text-white text-2xl text-center">Why Choose AscenBio</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-8">
@@ -201,136 +66,12 @@ const ChooseAscenBio = () => {
         </CardContent>
       </Card>
 
-      {/* Partnership Packages */}
-      <div className="mb-12">
-        <h3 className="text-3xl font-bold text-white mb-8 text-center">Partnership Packages</h3>
-        
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          {partnershipPackages.map((pkg) => (
-            <Button
-              key={pkg.id}
-              variant={selectedPackage === pkg.id ? "default" : "outline"}
-              className={`h-16 ${
-                selectedPackage === pkg.id 
-                  ? 'bg-teal-600 hover:bg-teal-700 text-white' 
-                  : 'bg-slate-800 border-slate-600 text-gray-300 hover:bg-slate-700'
-              }`}
-              onClick={() => setSelectedPackage(pkg.id)}
-            >
-              <span className="text-center text-sm">{pkg.name}</span>
-            </Button>
-          ))}
-        </div>
-
-        <Card className="bg-slate-800 border-slate-700">
-          <CardContent className="p-6">
-            {partnershipPackages.filter(pkg => pkg.id === selectedPackage).map((pkg) => (
-              <div key={pkg.id} className="space-y-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h4 className="text-2xl font-bold text-white mb-2">{pkg.name}</h4>
-                    <p className="text-gray-300">{pkg.description}</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-teal-400">{pkg.investment}</div>
-                    <div className="text-sm text-gray-400">{pkg.duration}</div>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h5 className="font-semibold text-blue-400 mb-3">Key Deliverables:</h5>
-                    <ul className="space-y-1">
-                      {pkg.keyDeliverables.map((deliverable, index) => (
-                        <li key={index} className="text-sm text-gray-300 flex items-start">
-                          <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                          {deliverable}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h5 className="font-semibold text-green-400 mb-3">Expected Outcomes:</h5>
-                    <div className="grid grid-cols-2 gap-3">
-                      {Object.entries(pkg.outcomes).map(([key, value]) => (
-                        <div key={key} className="bg-slate-700 p-3 rounded text-center">
-                          <div className="text-lg font-bold text-teal-400">{value}</div>
-                          <div className="text-xs text-gray-400 capitalize">
-                            {key.replace(/([A-Z])/g, ' $1')}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Partnership Process Timeline */}
-      <div className="mb-12">
-        <h3 className="text-3xl font-bold text-white mb-8 text-center">Partnership Process Timeline</h3>
-        
-        <div className="flex justify-center mb-8">
-          <div className="flex space-x-4">
-            {processPhases.map((phase) => (
-              <Button
-                key={phase.phase}
-                variant={currentPhase === phase.phase ? "default" : "outline"}
-                className={`w-12 h-12 rounded-full ${
-                  currentPhase === phase.phase 
-                    ? 'bg-teal-600 hover:bg-teal-700 text-white' 
-                    : 'bg-slate-800 border-slate-600 text-gray-300 hover:bg-slate-700'
-                }`}
-                onClick={() => setCurrentPhase(phase.phase)}
-              >
-                {phase.phase}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        <Card className="bg-slate-800 border-slate-700">
-          <CardContent className="p-6">
-            {processPhases.filter(phase => phase.phase === currentPhase).map((phase) => (
-              <div key={phase.phase} className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <h4 className="text-xl font-bold text-white">{phase.name}</h4>
-                  <Badge variant="outline" className="border-teal-400 text-teal-400">
-                    {phase.duration}
-                  </Badge>
-                </div>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h5 className="font-semibold text-blue-400 mb-2">Key Activities:</h5>
-                    <ul className="space-y-1">
-                      {phase.activities.map((activity, index) => (
-                        <li key={index} className="text-sm text-gray-300 flex items-start">
-                          <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                          {activity}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h5 className="font-semibold text-green-400 mb-2">Deliverables:</h5>
-                    <p className="text-sm text-gray-300">{phase.deliverables}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Download Section */}
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-bold text-white mb-6">Complete Partnership Details</h3>
+        <h3 className="text-3xl font-bold text-white mb-6">Start Your Partnership</h3>
+        <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+          Partner with AscenBio for comprehensive healthcare ecosystem development.
+        </p>
         <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-12 py-4 text-lg">
           Download the Full Report
         </Button>
