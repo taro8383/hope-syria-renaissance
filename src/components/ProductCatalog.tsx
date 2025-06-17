@@ -46,7 +46,7 @@ const ProductCatalog = () => {
           Product Catalog
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Comprehensive healthcare solutions designed for crisis zones and developing healthcare systems
+          Recommended healthcare products for urgent stocking on crisis zones and developing healthcare systems
         </p>
       </div>
 

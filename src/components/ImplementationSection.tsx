@@ -47,33 +47,6 @@ const ImplementationSection = () => {
     }
   ];
 
-  const riskMitigations = [
-    {
-      risk: 'Security Concerns',
-      level: 'High',
-      mitigation: 'Partnership with local authorities, secure compound designs, emergency evacuation protocols',
-      color: 'border-red-400'
-    },
-    {
-      risk: 'Supply Chain Disruption',
-      level: 'Medium',
-      mitigation: 'Multiple supplier networks, local stockpiling, alternative transportation routes',
-      color: 'border-yellow-400'
-    },
-    {
-      risk: 'Staff Retention',
-      level: 'Medium',
-      mitigation: 'Competitive compensation, career development, housing support',
-      color: 'border-yellow-400'
-    },
-    {
-      risk: 'Regulatory Changes',
-      level: 'Low',
-      mitigation: 'Government partnerships, legal framework agreements, compliance monitoring',
-      color: 'border-green-400'
-    }
-  ];
-
   const getTimelineData = (month) => {
     if (month <= 6) return phases[0];
     if (month <= 24) return phases[1];
@@ -183,29 +156,15 @@ const ImplementationSection = () => {
         ))}
       </div>
 
-      {/* Risk Management */}
+      {/* Implementation Approach */}
       <Card className="bg-slate-800 border-slate-700">
         <CardHeader>
-          <CardTitle className="text-white text-2xl text-center">Risk Management Dashboard</CardTitle>
+          <CardTitle className="text-white text-2xl text-center">Implementation Approach</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid md:grid-cols-2 gap-6">
-            {riskMitigations.map((risk, index) => (
-              <div key={index} className={`border-l-4 ${risk.color} pl-4`}>
-                <div className="flex justify-between items-center mb-2">
-                  <h4 className="font-semibold text-white">{risk.risk}</h4>
-                  <span className={`text-xs px-2 py-1 rounded ${
-                    risk.level === 'High' ? 'bg-red-900 text-red-300' :
-                    risk.level === 'Medium' ? 'bg-yellow-900 text-yellow-300' :
-                    'bg-green-900 text-green-300'
-                  }`}>
-                    {risk.level} Risk
-                  </span>
-                </div>
-                <p className="text-sm text-gray-300">{risk.mitigation}</p>
-              </div>
-            ))}
-          </div>
+          <p className="text-gray-300 text-center">
+            Phased deployment strategy across Syria's 14 governorates, beginning with critical healthcare infrastructure in Damascus and Aleppo.
+          </p>
         </CardContent>
       </Card>
     </div>

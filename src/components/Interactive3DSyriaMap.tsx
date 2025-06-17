@@ -14,6 +14,10 @@ interface GovernorateData {
   height: 'low' | 'medium' | 'high';
   color: string;
   coordinates: { x: number; y: number };
+  deploymentPhase?: number;
+  timeline?: string;
+  priority?: string;
+  facilities?: string[];
 }
 
 interface Interactive3DSyriaMapProps {
@@ -33,7 +37,7 @@ const Interactive3DSyriaMap = ({
   const [selectedGovernorate, setSelectedGovernorate] = useState<GovernorateData | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
 
-  const governorateData: GovernorateData[] = [
+  const crisisData: GovernorateData[] = [
     {
       name: "Aleppo",
       hospitals: { functional: 12, destroyed: 38, percentage: 24 },
@@ -86,12 +90,98 @@ const Interactive3DSyriaMap = ({
     }
   ];
 
+  const deploymentData: GovernorateData[] = [
+    {
+      name: "Aleppo",
+      hospitals: { functional: 12, destroyed: 38, percentage: 24 },
+      population: 4600000,
+      workforce: { remaining: 30, displaced: 70 },
+      diseaseOutbreaks: ["cholera", "measles"],
+      height: "medium",
+      color: "#10B981",
+      coordinates: { x: 25, y: 20 },
+      deploymentPhase: 1,
+      timeline: "Months 1-6",
+      priority: "critical",
+      facilities: ["Emergency Response Center", "Technical Service Hub"]
+    },
+    {
+      name: "Damascus",
+      hospitals: { functional: 28, destroyed: 15, percentage: 65 },
+      population: 2500000,
+      workforce: { remaining: 55, displaced: 45 },
+      diseaseOutbreaks: [],
+      height: "high",
+      color: "#10B981",
+      coordinates: { x: 35, y: 60 },
+      deploymentPhase: 1,
+      timeline: "Months 1-6",
+      priority: "high",
+      facilities: ["Main Technical Service Center", "Training Facility"]
+    },
+    {
+      name: "Homs",
+      hospitals: { functional: 8, destroyed: 25, percentage: 24 },
+      population: 1800000,
+      workforce: { remaining: 25, displaced: 75 },
+      diseaseOutbreaks: ["cholera"],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 30, y: 45 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "medium",
+      facilities: ["Regional Health Center", "Supply Distribution Hub"]
+    },
+    {
+      name: "Latakia",
+      hospitals: { functional: 15, destroyed: 8, percentage: 65 },
+      population: 1200000,
+      workforce: { remaining: 60, displaced: 40 },
+      diseaseOutbreaks: [],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 15, y: 35 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "medium",
+      facilities: ["Coastal Medical Complex"]
+    },
+    {
+      name: "Idlib",
+      hospitals: { functional: 3, destroyed: 42, percentage: 7 },
+      population: 3000000,
+      workforce: { remaining: 15, displaced: 85 },
+      diseaseOutbreaks: ["cholera", "measles", "hepatitis"],
+      height: "high",
+      color: "#10B981",
+      coordinates: { x: 20, y: 25 },
+      deploymentPhase: 1,
+      timeline: "Months 1-6",
+      priority: "critical",
+      facilities: ["Emergency Medical Station", "Mobile Clinic Network"]
+    }
+  ];
+
+  const getCurrentData = () => {
+    return selectedLayer === 'crisis' ? crisisData : deploymentData;
+  };
+
   const getHeightClass = (height: string) => {
     switch(height) {
       case 'low': return 'h-8';
       case 'medium': return 'h-16';
       case 'high': return 'h-24';
       default: return 'h-8';
+    }
+  };
+
+  const getPhaseColor = (phase: number) => {
+    switch(phase) {
+      case 1: return '#10B981'; // Green for Phase 1
+      case 2: return '#3B82F6'; // Blue for Phase 2
+      case 3: return '#F59E0B'; // Orange for Phase 3
+      default: return '#6B7280';
     }
   };
 
@@ -148,7 +238,7 @@ const Interactive3DSyriaMap = ({
           </div>
           
           {/* Governorate 3D Blocks */}
-          {governorateData.map((governorate, index) => (
+          {getCurrentData().map((governorate, index) => (
             <div
               key={governorate.name}
               className="absolute transition-all duration-1000 cursor-pointer transform hover:scale-110"
@@ -170,6 +260,11 @@ const Interactive3DSyriaMap = ({
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-white font-medium whitespace-nowrap">
                   {governorate.name}
                 </div>
+                {selectedLayer === 'deployment' && governorate.deploymentPhase && (
+                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-white bg-slate-700 px-1 rounded">
+                    Phase {governorate.deploymentPhase}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -178,6 +273,25 @@ const Interactive3DSyriaMap = ({
           {selectedLayer === 'crisis' && (
             <div className="absolute top-4 left-4 text-red-400 text-sm font-bold animate-pulse">
               DELAYED DEPLOYMENT = 47 MORE LIVES AT RISK DAILY
+            </div>
+          )}
+
+          {/* Deployment Strategy Legend */}
+          {selectedLayer === 'deployment' && (
+            <div className="absolute top-4 right-4 bg-slate-800 p-3 rounded text-xs text-white">
+              <div className="font-bold mb-2">Deployment Phases:</div>
+              <div className="flex items-center mb-1">
+                <div className="w-3 h-3 bg-green-500 rounded mr-2"></div>
+                Phase 1: Months 1-6
+              </div>
+              <div className="flex items-center mb-1">
+                <div className="w-3 h-3 bg-blue-500 rounded mr-2"></div>
+                Phase 2: Months 7-18
+              </div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 bg-orange-500 rounded mr-2"></div>
+                Phase 3: Months 19-36
+              </div>
             </div>
           )}
         </div>
@@ -212,6 +326,29 @@ const Interactive3DSyriaMap = ({
                 </div>
               </div>
               
+              {selectedLayer === 'deployment' && selectedGovernorate.deploymentPhase && (
+                <div className="mt-4 p-3 bg-slate-600 rounded">
+                  <div className="text-sm font-medium text-green-400 mb-2">
+                    Deployment Phase {selectedGovernorate.deploymentPhase}: {selectedGovernorate.timeline}
+                  </div>
+                  <div className="text-sm text-gray-300 mb-2">
+                    Priority: <span className="text-white font-medium">{selectedGovernorate.priority}</span>
+                  </div>
+                  {selectedGovernorate.facilities && (
+                    <div>
+                      <div className="text-sm text-gray-400 mb-2">Planned Facilities:</div>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedGovernorate.facilities.map((facility, index) => (
+                          <Badge key={index} variant="outline" className="text-xs border-green-400 text-green-400">
+                            {facility}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {selectedGovernorate.diseaseOutbreaks.length > 0 && (
                 <div className="mt-4">
                   <div className="text-sm text-red-400 font-medium mb-2">Active Disease Outbreaks:</div>
