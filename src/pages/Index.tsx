@@ -10,6 +10,7 @@ import AscenBioSolution from '@/components/AscenBioSolution';
 import SolutionSection from '@/components/SolutionSection';
 import ProductCatalog from '@/components/ProductCatalog';
 import SyriaAdvantage from '@/components/SyriaAdvantage';
+import SyriaHealthcareFuture from '@/components/SyriaHealthcareFuture';
 import ImplementationSection from '@/components/ImplementationSection';
 import ImpactSection from '@/components/ImpactSection';
 import ChooseAscenBio from '@/components/ChooseAscenBio';
@@ -21,7 +22,7 @@ const Index = () => {
     const handleScroll = () => {
       const sections = [
         'hero', 'crisis', 'ascenbio-solution', 'solution', 
-        'catalog', 'syria-advantage', 'implementation', 'impact', 'choose-ascenbio'
+        'catalog', 'syria-advantage', 'syria-future', 'implementation', 'impact', 'choose-ascenbio'
       ];
       const scrollPosition = window.scrollY + 100;
 
@@ -69,11 +70,15 @@ const Index = () => {
         <SyriaAdvantage />
       </section>
 
-      <section id="implementation" className="py-20 bg-slate-800">
+      <section id="syria-future" className="py-20 bg-slate-800">
+        <SyriaHealthcareFuture />
+      </section>
+
+      <section id="implementation" className="py-20">
         <ImplementationSection />
       </section>
 
-      <section id="impact" className="py-20">
+      <section id="impact" className="py-20 bg-slate-800">
         <ImpactSection />
       </section>
 

@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import EnhancedROICalculator from './EnhancedROICalculator';
 
 const SyriaAdvantage = () => {
   const [selectedChallenge, setSelectedChallenge] = useState('infrastructure');
@@ -147,6 +147,12 @@ const SyriaAdvantage = () => {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      {/* Enhanced ROI Calculator with Manufacturing & Tourism */}
+      <div className="mb-12">
+        <h3 className="text-3xl font-bold text-white mb-8 text-center">Calculate Your Economic Transformation Impact</h3>
+        <EnhancedROICalculator />
       </div>
 
       {/* Challenge-Solution Matching Tool */}

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import PhasedTechnicalServiceStrategy from './PhasedTechnicalServiceStrategy';
 
 const AscenBioSolutionSection = () => {
   const [activePillar, setActivePillar] = useState('manufacturing');
@@ -27,18 +28,7 @@ const AscenBioSolutionSection = () => {
     technical: {
       title: 'Technical Service Excellence',
       description: 'Comprehensive support systems for sustainable healthcare delivery',
-      features: [
-        '5-year local capacity building progression',
-        'Interactive technician development pathways',
-        'Equipment lifecycle maintenance support',
-        'Skills transfer and retention strategies'
-      ],
-      metrics: {
-        retention: '85%',
-        sustainability: '5 years',
-        training: '90%',
-        support: '24/7'
-      }
+      component: 'PhasedTechnicalServiceStrategy'
     },
     human: {
       title: 'Human Capital Solutions',
@@ -91,65 +81,71 @@ const AscenBioSolutionSection = () => {
       </div>
 
       {/* Active Pillar Content */}
-      <Card className="bg-slate-800 border-slate-700 mb-12">
-        <CardHeader>
-          <CardTitle className="text-white text-2xl">{pillars[activePillar as keyof typeof pillars].title}</CardTitle>
-          <p className="text-gray-300">{pillars[activePillar as keyof typeof pillars].description}</p>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="text-lg font-semibold text-blue-400 mb-4">Key Features</h4>
-              <ul className="space-y-2">
-                {pillars[activePillar as keyof typeof pillars].features.map((feature, index) => (
-                  <li key={index} className="flex items-start text-gray-300">
-                    <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold text-green-400 mb-4">Performance Metrics</h4>
-              <div className="grid grid-cols-2 gap-4">
-                {Object.entries(pillars[activePillar as keyof typeof pillars].metrics).map(([key, value]) => (
-                  <div key={key} className="bg-slate-700 p-3 rounded text-center">
-                    <div className="text-lg font-bold text-teal-400">{value}</div>
-                    <div className="text-xs text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1')}</div>
-                  </div>
-                ))}
+      {activePillar === 'technical' ? (
+        <PhasedTechnicalServiceStrategy />
+      ) : (
+        <Card className="bg-slate-800 border-slate-700 mb-12">
+          <CardHeader>
+            <CardTitle className="text-white text-2xl">{pillars[activePillar as keyof typeof pillars].title}</CardTitle>
+            <p className="text-gray-300">{pillars[activePillar as keyof typeof pillars].description}</p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-blue-400 mb-4">Key Features</h4>
+                <ul className="space-y-2">
+                  {pillars[activePillar as keyof typeof pillars].features?.map((feature, index) => (
+                    <li key={index} className="flex items-start text-gray-300">
+                      <span className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-green-400 mb-4">Performance Metrics</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  {pillars[activePillar as keyof typeof pillars].metrics && Object.entries(pillars[activePillar as keyof typeof pillars].metrics!).map(([key, value]) => (
+                    <div key={key} className="bg-slate-700 p-3 rounded text-center">
+                      <div className="text-lg font-bold text-teal-400">{value}</div>
+                      <div className="text-xs text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1')}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
 
-      {/* Supplier Network Visualization */}
-      <Card className="bg-slate-800 border-slate-700">
-        <CardHeader>
-          <CardTitle className="text-white text-xl">140+ Chinese Manufacturer Network</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-teal-400 mb-2">140+</div>
-              <div className="text-sm text-gray-300">Direct Manufacturer Relationships</div>
+      {/* Supplier Network Visualization - Only show for manufacturing pillar */}
+      {activePillar === 'manufacturing' && (
+        <Card className="bg-slate-800 border-slate-700">
+          <CardHeader>
+            <CardTitle className="text-white text-xl">140+ Chinese Manufacturer Network</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-4 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-teal-400 mb-2">140+</div>
+                <div className="text-sm text-gray-300">Direct Manufacturer Relationships</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-400 mb-2">75%</div>
+                <div className="text-sm text-gray-300">Faster Deployment</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-400 mb-2">30-40%</div>
+                <div className="text-sm text-gray-300">Cost Savings</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-orange-400 mb-2">98%</div>
+                <div className="text-sm text-gray-300">Quality Certification Rate</div>
+              </div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">75%</div>
-              <div className="text-sm text-gray-300">Faster Deployment</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-green-400 mb-2">30-40%</div>
-              <div className="text-sm text-gray-300">Cost Savings</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-orange-400 mb-2">98%</div>
-              <div className="text-sm text-gray-300">Quality Certification Rate</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
 };
