@@ -1,9 +1,7 @@
 
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import Interactive3DSyriaMap from '@/components/Interactive3DSyriaMap';
 
 const ImplementationSection = () => {
   const [timelineMonth, setTimelineMonth] = useState([0]);
@@ -64,26 +62,6 @@ const ImplementationSection = () => {
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           A comprehensive 60-month plan to rebuild Syria's healthcare system through three strategic phases
         </p>
-      </div>
-
-      {/* 3D Implementation Planning Map */}
-      <div className="mb-12">
-        <Card className="bg-slate-800 border-slate-700">
-          <CardHeader>
-            <CardTitle className="text-white text-2xl text-center">3D Reconstruction Planning Interface</CardTitle>
-            <p className="text-gray-300 text-center">Visualize deployment strategy across Syrian governorates</p>
-          </CardHeader>
-          <CardContent>
-            <Interactive3DSyriaMap 
-              currentLayer="deployment"
-              persuasionElements={{
-                exclusiveAccess: true,
-                manufacturerCount: "140+",
-                urgencyLevel: "high"
-              }}
-            />
-          </CardContent>
-        </Card>
       </div>
 
       {/* Interactive Timeline */}

@@ -1,5 +1,4 @@
 
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -39,13 +38,13 @@ const ChooseAscenBioSection = () => {
           Choose AscenBio
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Partner with proven healthcare system builders, not just product suppliers
+          Your Strategic Healthcare Reconstruction Partner
         </p>
       </div>
 
-      {/* Partnership Comparison Widget */}
+      {/* Why Choose AscenBio - Partnership Comparison */}
       <div className="mb-16">
-        <h3 className="text-3xl font-bold text-white mb-8 text-center">Partnership Model Comparison</h3>
+        <h3 className="text-3xl font-bold text-white mb-8 text-center">Why Choose AscenBio</h3>
         <Card className="bg-slate-800 border-slate-700">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-4 gap-6">
@@ -72,23 +71,16 @@ const ChooseAscenBioSection = () => {
         </Card>
       </div>
 
-      {/* Contact Section */}
+      {/* Download Section */}
       <div className="text-center mb-8">
         <h3 className="text-3xl font-bold text-white mb-6">Start Your Partnership</h3>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
           Partner with AscenBio for comprehensive healthcare ecosystem development.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white">
-            Download the Full Report
-          </Button>
-          <Button variant="outline" size="lg" className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white">
-            Schedule Capability Presentation
-          </Button>
-          <Button variant="outline" size="lg" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-white">
-            Discuss Syria-Specific Solutions
-          </Button>
-        </div>
+        <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-12 py-4 text-lg">
+          Download the Full Report
+        </Button>
+        <p className="text-gray-400 mt-4">Comprehensive implementation plan and partnership framework</p>
       </div>
     </div>
   );

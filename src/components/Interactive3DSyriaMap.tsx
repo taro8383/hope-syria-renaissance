@@ -18,6 +18,7 @@ interface GovernorateData {
   timeline?: string;
   priority?: string;
   facilities?: string[];
+  equipment?: string[];
 }
 
 interface Interactive3DSyriaMapProps {
@@ -39,19 +40,9 @@ const Interactive3DSyriaMap = ({
 
   const crisisData: GovernorateData[] = [
     {
-      name: "Aleppo",
-      hospitals: { functional: 12, destroyed: 38, percentage: 24 },
-      population: 4600000,
-      workforce: { remaining: 30, displaced: 70 },
-      diseaseOutbreaks: ["cholera", "measles"],
-      height: "low",
-      color: "#EF4444",
-      coordinates: { x: 25, y: 20 }
-    },
-    {
       name: "Damascus",
-      hospitals: { functional: 28, destroyed: 15, percentage: 65 },
       population: 2500000,
+      hospitals: { functional: 28, destroyed: 15, percentage: 65 },
       workforce: { remaining: 55, displaced: 45 },
       diseaseOutbreaks: [],
       height: "medium",
@@ -59,9 +50,19 @@ const Interactive3DSyriaMap = ({
       coordinates: { x: 35, y: 60 }
     },
     {
+      name: "Aleppo",
+      population: 4600000,
+      hospitals: { functional: 12, destroyed: 38, percentage: 24 },
+      workforce: { remaining: 30, displaced: 70 },
+      diseaseOutbreaks: ["cholera", "measles"],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 25, y: 20 }
+    },
+    {
       name: "Homs",
-      hospitals: { functional: 8, destroyed: 25, percentage: 24 },
       population: 1800000,
+      hospitals: { functional: 8, destroyed: 22, percentage: 27 },
       workforce: { remaining: 25, displaced: 75 },
       diseaseOutbreaks: ["cholera"],
       height: "low",
@@ -69,9 +70,19 @@ const Interactive3DSyriaMap = ({
       coordinates: { x: 30, y: 45 }
     },
     {
+      name: "Hama",
+      population: 1750000,
+      hospitals: { functional: 10, destroyed: 18, percentage: 36 },
+      workforce: { remaining: 35, displaced: 65 },
+      diseaseOutbreaks: [],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 28, y: 38 }
+    },
+    {
       name: "Latakia",
+      population: 1300000,
       hospitals: { functional: 15, destroyed: 8, percentage: 65 },
-      population: 1200000,
       workforce: { remaining: 60, displaced: 40 },
       diseaseOutbreaks: [],
       height: "medium",
@@ -79,36 +90,102 @@ const Interactive3DSyriaMap = ({
       coordinates: { x: 15, y: 35 }
     },
     {
-      name: "Idlib",
-      hospitals: { functional: 3, destroyed: 42, percentage: 7 },
-      population: 3000000,
-      workforce: { remaining: 15, displaced: 85 },
-      diseaseOutbreaks: ["cholera", "measles", "hepatitis"],
+      name: "Tartus",
+      population: 900000,
+      hospitals: { functional: 12, destroyed: 5, percentage: 71 },
+      workforce: { remaining: 65, displaced: 35 },
+      diseaseOutbreaks: [],
+      height: "medium",
+      color: "#F59E0B",
+      coordinates: { x: 18, y: 42 }
+    },
+    {
+      name: "Daraa",
+      population: 1200000,
+      hospitals: { functional: 5, destroyed: 25, percentage: 17 },
+      workforce: { remaining: 20, displaced: 80 },
+      diseaseOutbreaks: ["cholera", "measles"],
       height: "low",
-      color: "#DC2626",
+      color: "#EF4444",
+      coordinates: { x: 40, y: 75 }
+    },
+    {
+      name: "As-Suwayda",
+      population: 500000,
+      hospitals: { functional: 8, destroyed: 4, percentage: 67 },
+      workforce: { remaining: 55, displaced: 45 },
+      diseaseOutbreaks: [],
+      height: "medium",
+      color: "#F59E0B",
+      coordinates: { x: 45, y: 70 }
+    },
+    {
+      name: "Quneitra",
+      population: 100000,
+      hospitals: { functional: 1, destroyed: 8, percentage: 11 },
+      workforce: { remaining: 15, displaced: 85 },
+      diseaseOutbreaks: ["measles"],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 38, y: 68 }
+    },
+    {
+      name: "Deir ez-Zor",
+      population: 1500000,
+      hospitals: { functional: 4, destroyed: 20, percentage: 17 },
+      workforce: { remaining: 20, displaced: 80 },
+      diseaseOutbreaks: ["cholera", "polio"],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 65, y: 40 }
+    },
+    {
+      name: "Ar-Raqqa",
+      population: 1000000,
+      hospitals: { functional: 3, destroyed: 18, percentage: 14 },
+      workforce: { remaining: 18, displaced: 82 },
+      diseaseOutbreaks: ["cholera", "measles"],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 55, y: 30 }
+    },
+    {
+      name: "Al-Hasakah",
+      population: 1600000,
+      hospitals: { functional: 7, destroyed: 15, percentage: 32 },
+      workforce: { remaining: 30, displaced: 70 },
+      diseaseOutbreaks: ["cholera"],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 70, y: 20 }
+    },
+    {
+      name: "Idlib",
+      population: 1500000,
+      hospitals: { functional: 6, destroyed: 24, percentage: 20 },
+      workforce: { remaining: 22, displaced: 78 },
+      diseaseOutbreaks: ["cholera", "measles", "polio"],
+      height: "low",
+      color: "#EF4444",
       coordinates: { x: 20, y: 25 }
+    },
+    {
+      name: "Rural Damascus",
+      population: 3000000,
+      hospitals: { functional: 18, destroyed: 35, percentage: 34 },
+      workforce: { remaining: 32, displaced: 68 },
+      diseaseOutbreaks: ["cholera"],
+      height: "low",
+      color: "#EF4444",
+      coordinates: { x: 42, y: 55 }
     }
   ];
 
   const deploymentData: GovernorateData[] = [
     {
-      name: "Aleppo",
-      hospitals: { functional: 12, destroyed: 38, percentage: 24 },
-      population: 4600000,
-      workforce: { remaining: 30, displaced: 70 },
-      diseaseOutbreaks: ["cholera", "measles"],
-      height: "medium",
-      color: "#10B981",
-      coordinates: { x: 25, y: 20 },
-      deploymentPhase: 1,
-      timeline: "Months 1-6",
-      priority: "critical",
-      facilities: ["Emergency Response Center", "Technical Service Hub"]
-    },
-    {
       name: "Damascus",
-      hospitals: { functional: 28, destroyed: 15, percentage: 65 },
       population: 2500000,
+      hospitals: { functional: 28, destroyed: 15, percentage: 65 },
       workforce: { remaining: 55, displaced: 45 },
       diseaseOutbreaks: [],
       height: "high",
@@ -116,13 +193,29 @@ const Interactive3DSyriaMap = ({
       coordinates: { x: 35, y: 60 },
       deploymentPhase: 1,
       timeline: "Months 1-6",
-      priority: "high",
-      facilities: ["Main Technical Service Center", "Training Facility"]
+      priority: "critical",
+      facilities: ["Main Technical Service Center", "Training Facility"],
+      equipment: ["Diagnostic equipment", "Emergency response kits"]
+    },
+    {
+      name: "Aleppo",
+      population: 4600000,
+      hospitals: { functional: 12, destroyed: 38, percentage: 24 },
+      workforce: { remaining: 30, displaced: 70 },
+      diseaseOutbreaks: ["cholera", "measles"],
+      height: "high",
+      color: "#10B981",
+      coordinates: { x: 25, y: 20 },
+      deploymentPhase: 1,
+      timeline: "Months 1-6",
+      priority: "critical",
+      facilities: ["Emergency Response Center", "Mobile clinics"],
+      equipment: ["Basic medical equipment", "Infectious disease kits"]
     },
     {
       name: "Homs",
-      hospitals: { functional: 8, destroyed: 25, percentage: 24 },
       population: 1800000,
+      hospitals: { functional: 8, destroyed: 22, percentage: 27 },
       workforce: { remaining: 25, displaced: 75 },
       diseaseOutbreaks: ["cholera"],
       height: "medium",
@@ -130,13 +223,29 @@ const Interactive3DSyriaMap = ({
       coordinates: { x: 30, y: 45 },
       deploymentPhase: 2,
       timeline: "Months 7-18",
-      priority: "medium",
-      facilities: ["Regional Health Center", "Supply Distribution Hub"]
+      priority: "high",
+      facilities: ["Regional Health Center", "Supply Distribution Hub"],
+      equipment: ["Medical supplies", "Diagnostic tools"]
+    },
+    {
+      name: "Hama",
+      population: 1750000,
+      hospitals: { functional: 10, destroyed: 18, percentage: 36 },
+      workforce: { remaining: 35, displaced: 65 },
+      diseaseOutbreaks: [],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 28, y: 38 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "high",
+      facilities: ["District Medical Center"],
+      equipment: ["Basic medical equipment"]
     },
     {
       name: "Latakia",
+      population: 1300000,
       hospitals: { functional: 15, destroyed: 8, percentage: 65 },
-      population: 1200000,
       workforce: { remaining: 60, displaced: 40 },
       diseaseOutbreaks: [],
       height: "medium",
@@ -145,21 +254,143 @@ const Interactive3DSyriaMap = ({
       deploymentPhase: 2,
       timeline: "Months 7-18",
       priority: "medium",
-      facilities: ["Coastal Medical Complex"]
+      facilities: ["Coastal Medical Complex"],
+      equipment: ["Specialized equipment"]
+    },
+    {
+      name: "Tartus",
+      population: 900000,
+      hospitals: { functional: 12, destroyed: 5, percentage: 71 },
+      workforce: { remaining: 65, displaced: 35 },
+      diseaseOutbreaks: [],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 18, y: 42 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "medium",
+      facilities: ["Port Medical Station"],
+      equipment: ["Emergency supplies"]
+    },
+    {
+      name: "Daraa",
+      population: 1200000,
+      hospitals: { functional: 5, destroyed: 25, percentage: 17 },
+      workforce: { remaining: 20, displaced: 80 },
+      diseaseOutbreaks: ["cholera", "measles"],
+      height: "medium",
+      color: "#10B981",
+      coordinates: { x: 40, y: 75 },
+      deploymentPhase: 1,
+      timeline: "Months 1-6",
+      priority: "critical",
+      facilities: ["Border Medical Center"],
+      equipment: ["Emergency response kits", "Infectious disease supplies"]
+    },
+    {
+      name: "As-Suwayda",
+      population: 500000,
+      hospitals: { functional: 8, destroyed: 4, percentage: 67 },
+      workforce: { remaining: 55, displaced: 45 },
+      diseaseOutbreaks: [],
+      height: "medium",
+      color: "#F59E0B",
+      coordinates: { x: 45, y: 70 },
+      deploymentPhase: 3,
+      timeline: "Months 19-36",
+      priority: "medium",
+      facilities: ["Regional Clinic"],
+      equipment: ["Basic medical supplies"]
+    },
+    {
+      name: "Quneitra",
+      population: 100000,
+      hospitals: { functional: 1, destroyed: 8, percentage: 11 },
+      workforce: { remaining: 15, displaced: 85 },
+      diseaseOutbreaks: ["measles"],
+      height: "medium",
+      color: "#F59E0B",
+      coordinates: { x: 38, y: 68 },
+      deploymentPhase: 3,
+      timeline: "Months 19-36",
+      priority: "low",
+      facilities: ["Mobile Medical Unit"],
+      equipment: ["Basic supplies"]
+    },
+    {
+      name: "Deir ez-Zor",
+      population: 1500000,
+      hospitals: { functional: 4, destroyed: 20, percentage: 17 },
+      workforce: { remaining: 20, displaced: 80 },
+      diseaseOutbreaks: ["cholera", "polio"],
+      height: "medium",
+      color: "#10B981",
+      coordinates: { x: 65, y: 40 },
+      deploymentPhase: 1,
+      timeline: "Months 1-6",
+      priority: "critical",
+      facilities: ["Emergency Medical Station"],
+      equipment: ["Emergency kits", "Disease control supplies"]
+    },
+    {
+      name: "Ar-Raqqa",
+      population: 1000000,
+      hospitals: { functional: 3, destroyed: 18, percentage: 14 },
+      workforce: { remaining: 18, displaced: 82 },
+      diseaseOutbreaks: ["cholera", "measles"],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 55, y: 30 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "high",
+      facilities: ["Reconstruction Medical Center"],
+      equipment: ["Medical equipment", "Disease prevention supplies"]
+    },
+    {
+      name: "Al-Hasakah",
+      population: 1600000,
+      hospitals: { functional: 7, destroyed: 15, percentage: 32 },
+      workforce: { remaining: 30, displaced: 70 },
+      diseaseOutbreaks: ["cholera"],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 70, y: 20 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "high",
+      facilities: ["Border Health Station"],
+      equipment: ["Medical supplies", "Diagnostic equipment"]
     },
     {
       name: "Idlib",
-      hospitals: { functional: 3, destroyed: 42, percentage: 7 },
-      population: 3000000,
-      workforce: { remaining: 15, displaced: 85 },
-      diseaseOutbreaks: ["cholera", "measles", "hepatitis"],
+      population: 1500000,
+      hospitals: { functional: 6, destroyed: 24, percentage: 20 },
+      workforce: { remaining: 22, displaced: 78 },
+      diseaseOutbreaks: ["cholera", "measles", "polio"],
       height: "high",
       color: "#10B981",
       coordinates: { x: 20, y: 25 },
       deploymentPhase: 1,
       timeline: "Months 1-6",
       priority: "critical",
-      facilities: ["Emergency Medical Station", "Mobile Clinic Network"]
+      facilities: ["Emergency Medical Station", "Mobile Clinic Network"],
+      equipment: ["Emergency response kits", "Disease control supplies"]
+    },
+    {
+      name: "Rural Damascus",
+      population: 3000000,
+      hospitals: { functional: 18, destroyed: 35, percentage: 34 },
+      workforce: { remaining: 32, displaced: 68 },
+      diseaseOutbreaks: ["cholera"],
+      height: "medium",
+      color: "#3B82F6",
+      coordinates: { x: 42, y: 55 },
+      deploymentPhase: 2,
+      timeline: "Months 7-18",
+      priority: "high",
+      facilities: ["Rural Medical Network"],
+      equipment: ["Medical equipment", "Emergency supplies"]
     }
   ];
 
@@ -173,15 +404,6 @@ const Interactive3DSyriaMap = ({
       case 'medium': return 'h-16';
       case 'high': return 'h-24';
       default: return 'h-8';
-    }
-  };
-
-  const getPhaseColor = (phase: number) => {
-    switch(phase) {
-      case 1: return '#10B981'; // Green for Phase 1
-      case 2: return '#3B82F6'; // Blue for Phase 2
-      case 3: return '#F59E0B'; // Orange for Phase 3
-      default: return '#6B7280';
     }
   };
 
@@ -335,12 +557,24 @@ const Interactive3DSyriaMap = ({
                     Priority: <span className="text-white font-medium">{selectedGovernorate.priority}</span>
                   </div>
                   {selectedGovernorate.facilities && (
-                    <div>
+                    <div className="mb-2">
                       <div className="text-sm text-gray-400 mb-2">Planned Facilities:</div>
                       <div className="flex flex-wrap gap-1">
                         {selectedGovernorate.facilities.map((facility, index) => (
                           <Badge key={index} variant="outline" className="text-xs border-green-400 text-green-400">
                             {facility}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  {selectedGovernorate.equipment && (
+                    <div>
+                      <div className="text-sm text-gray-400 mb-2">Equipment:</div>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedGovernorate.equipment.map((equipment, index) => (
+                          <Badge key={index} variant="outline" className="text-xs border-blue-400 text-blue-400">
+                            {equipment}
                           </Badge>
                         ))}
                       </div>
