@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
 import { Building, Heart, Users, TrendingDown } from 'lucide-react';
 
@@ -31,9 +30,7 @@ const Interactive3DSyriaMap = ({
   persuasionElements 
 }: Interactive3DSyriaMapProps) => {
   const [selectedLayer, setSelectedLayer] = useState(currentLayer);
-  const [timelinePosition, setTimelinePosition] = useState([0]);
   const [selectedGovernorate, setSelectedGovernorate] = useState<GovernorateData | null>(null);
-  const [isTransforming, setIsTransforming] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
 
   const governorateData: GovernorateData[] = [
@@ -89,29 +86,6 @@ const Interactive3DSyriaMap = ({
     }
   ];
 
-  const getReconstructedData = (governorate: GovernorateData) => ({
-    ...governorate,
-    hospitals: { ...governorate.hospitals, functional: 95, percentage: 95 },
-    workforce: { remaining: 85, displaced: 15 },
-    diseaseOutbreaks: [],
-    height: "high" as const,
-    color: "#10B981"
-  });
-
-  const handleVisionMode = () => {
-    setIsTransforming(true);
-    setTimeout(() => {
-      setSelectedLayer('reconstruction');
-      setIsTransforming(false);
-    }, 2000);
-  };
-
-  const getCurrentData = () => {
-    return selectedLayer === 'reconstruction' 
-      ? governorateData.map(getReconstructedData)
-      : governorateData;
-  };
-
   const getHeightClass = (height: string) => {
     switch(height) {
       case 'low': return 'h-8';
@@ -125,7 +99,7 @@ const Interactive3DSyriaMap = ({
     <Card className="bg-slate-800 border-slate-700">
       <CardHeader>
         <CardTitle className="text-white text-2xl text-center">
-          Syria Healthcare Ecosystem - Current Crisis & Reconstruction Vision
+          Syria Healthcare Ecosystem - Current Crisis & Deployment Strategy
         </CardTitle>
         <div className="flex justify-center gap-4 mb-4">
           <Button
@@ -136,18 +110,11 @@ const Interactive3DSyriaMap = ({
             Current Crisis
           </Button>
           <Button
-            variant={selectedLayer === 'reconstruction' ? 'default' : 'outline'}
-            onClick={() => setSelectedLayer('reconstruction')}
-            className="bg-green-600 hover:bg-green-700"
+            variant={selectedLayer === 'deployment' ? 'default' : 'outline'}
+            onClick={() => setSelectedLayer('deployment')}
+            className="bg-blue-600 hover:bg-blue-700"
           >
-            Post-Reconstruction
-          </Button>
-          <Button
-            onClick={handleVisionMode}
-            className="bg-teal-600 hover:bg-teal-700"
-            disabled={isTransforming}
-          >
-            {isTransforming ? 'Transforming...' : 'Vision Mode'}
+            Deployment Strategy
           </Button>
         </div>
         
@@ -181,12 +148,10 @@ const Interactive3DSyriaMap = ({
           </div>
           
           {/* Governorate 3D Blocks */}
-          {getCurrentData().map((governorate, index) => (
+          {governorateData.map((governorate, index) => (
             <div
               key={governorate.name}
-              className={`absolute transition-all duration-1000 cursor-pointer transform hover:scale-110 ${
-                isTransforming ? 'animate-pulse' : ''
-              }`}
+              className="absolute transition-all duration-1000 cursor-pointer transform hover:scale-110"
               style={{
                 left: `${governorate.coordinates.x}%`,
                 top: `${governorate.coordinates.y}%`,
@@ -215,28 +180,6 @@ const Interactive3DSyriaMap = ({
               DELAYED DEPLOYMENT = 47 MORE LIVES AT RISK DAILY
             </div>
           )}
-        </div>
-        
-        {/* Timeline Scrubber */}
-        <div className="mb-6">
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-white font-medium">Reconstruction Timeline:</span>
-            <span className="text-teal-400 font-bold">{timelinePosition[0]} months</span>
-          </div>
-          <Slider
-            value={timelinePosition}
-            onValueChange={setTimelinePosition}
-            max={60}
-            min={0}
-            step={1}
-            className="w-full"
-          />
-          <div className="flex justify-between text-sm text-gray-400 mt-2">
-            <span>Crisis State</span>
-            <span>Phase 1: Emergency</span>
-            <span>Phase 2: Rebuilding</span>
-            <span>Full Recovery</span>
-          </div>
         </div>
         
         {/* Selected Governorate Details */}

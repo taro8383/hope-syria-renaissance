@@ -161,17 +161,19 @@ const TransformationDashboard = () => {
                 </div>
               )}
               
-              {/* Improvement Indicator */}
-              <div className="flex items-center justify-center gap-2 text-sm">
-                {metric.improvementType === 'increase' ? (
-                  <ArrowRight className="w-4 h-4 text-green-400" />
-                ) : (
-                  <ArrowDown className="w-4 h-4 text-green-400" />
-                )}
-                <span className="text-green-400 font-semibold">
-                  {getImprovementPercentage(metric)}% improvement
-                </span>
-              </div>
+              {/* Improvement Indicator - Only show in "After" state */}
+              {showAfter && (
+                <div className="flex items-center justify-center gap-2 text-sm">
+                  {metric.improvementType === 'increase' ? (
+                    <ArrowRight className="w-4 h-4 text-green-400" />
+                  ) : (
+                    <ArrowDown className="w-4 h-4 text-green-400" />
+                  )}
+                  <span className="text-green-400 font-semibold">
+                    {getImprovementPercentage(metric)}% improvement
+                  </span>
+                </div>
+              )}
             </div>
           ))}
         </div>

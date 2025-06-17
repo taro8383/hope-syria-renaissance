@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import ROICalculator from '@/components/ROICalculator';
 
 const SyriaAdvantage = () => {
   const [selectedChallenge, setSelectedChallenge] = useState('infrastructure');
@@ -99,6 +98,29 @@ const SyriaAdvantage = () => {
     }
   ];
 
+  const keyAdvantages = [
+    {
+      title: 'Speed & Timing Advantages',
+      description: 'Immediate deployment capability through existing relationships',
+      metrics: '75% faster deployment than traditional approaches'
+    },
+    {
+      title: 'Supplier Network Access',
+      description: 'Direct relationships with 140+ Chinese manufacturers',
+      metrics: 'Better pricing and availability through established partnerships'
+    },
+    {
+      title: 'Crisis-Resilient Systems',
+      description: 'Proven experience in challenging markets across Latin America',
+      metrics: '85-98% staff retention rates in difficult environments'
+    },
+    {
+      title: 'Cultural Adaptation',
+      description: 'Localization expertise with community engagement protocols',
+      metrics: '60% higher technology adoption rates'
+    }
+  ];
+
   return (
     <div className="container mx-auto px-4">
       <div className="text-center mb-16">
@@ -110,8 +132,22 @@ const SyriaAdvantage = () => {
         </p>
       </div>
 
-      {/* ROI Calculator */}
-      <ROICalculator />
+      {/* Key Advantages Summary */}
+      <div className="grid md:grid-cols-2 gap-8 mb-12">
+        {keyAdvantages.map((advantage, index) => (
+          <Card key={index} className="bg-slate-800 border-slate-700">
+            <CardHeader>
+              <CardTitle className="text-white text-xl">{advantage.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-300 mb-4">{advantage.description}</p>
+              <div className="bg-slate-700 p-3 rounded">
+                <p className="text-teal-400 font-semibold text-sm">{advantage.metrics}</p>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
 
       {/* Challenge-Solution Matching Tool */}
       <Card className="bg-slate-800 border-slate-700 mb-12">
