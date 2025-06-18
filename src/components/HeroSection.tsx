@@ -28,7 +28,7 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 text-center relative z-10 pt-16">
         <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-teal-200 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-teal-200 bg-clip-text text-transparent leading-[1.2] pb-1">
             Rebuilding Hope:
           </h1>
           <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-teal-200 to-green-200 bg-clip-text text-transparent">
@@ -52,7 +52,7 @@ const HeroSection = () => {
               className="bg-teal-600 hover:bg-teal-700 text-white px-8 py-3"
               onClick={() => scrollToSection('ascenbio-solution')}
             >
-              Discover AscenBio Advantage
+            Discover Our Solution
             </Button>
             <Button 
               variant="outline" 

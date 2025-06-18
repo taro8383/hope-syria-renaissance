@@ -1,22 +1,8 @@
 
-import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Slider } from '@/components/ui/slider';
 
 const SyriaAdvantage = () => {
-  const [investment, setInvestment] = useState([400]);
-
-  const calculateROI = (investmentValue: number) => {
-    return {
-      peopleServed: Math.round(investmentValue * 25000), // 25,000 people per $1M
-      facilitiesOperational: Math.round(investmentValue * 0.25), // 0.25 facilities per $1M
-      healthcareWorkers: Math.round(investmentValue * 12.5), // 12.5 workers per $1M
-      roiMultiplier: (2.5 + (investmentValue / 1000)).toFixed(1)
-    };
-  };
-
-  const roi = calculateROI(investment[0]);
 
   const advantages = [
     {
@@ -127,53 +113,6 @@ const SyriaAdvantage = () => {
         ))}
       </div>
 
-      {/* Basic ROI Calculator */}
-      <Card className="bg-slate-800 border-slate-700">
-        <CardHeader>
-          <CardTitle className="text-white text-2xl text-center">Investment Impact Calculator</CardTitle>
-          <p className="text-gray-300 text-center">See the projected impact of healthcare investment in Syria</p>
-        </CardHeader>
-        <CardContent className="space-y-8">
-          <div>
-            <div className="flex justify-between items-center mb-4">
-              <label className="text-white font-medium">Investment Amount</label>
-              <span className="text-teal-400 font-bold text-xl">${investment[0]}M</span>
-            </div>
-            <Slider
-              value={investment}
-              onValueChange={setInvestment}
-              max={800}
-              min={50}
-              step={25}
-              className="w-full"
-            />
-            <div className="flex justify-between text-sm text-gray-400 mt-2">
-              <span>$50M</span>
-              <span>$400M</span>
-              <span>$800M</span>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-slate-700 p-4 rounded-lg text-center">
-              <div className="text-2xl font-bold text-blue-400">{roi.peopleServed.toLocaleString()}</div>
-              <div className="text-sm text-gray-300">People Served</div>
-            </div>
-            <div className="bg-slate-700 p-4 rounded-lg text-center">
-              <div className="text-2xl font-bold text-green-400">{roi.facilitiesOperational}</div>
-              <div className="text-sm text-gray-300">Facilities Operational</div>
-            </div>
-            <div className="bg-slate-700 p-4 rounded-lg text-center">
-              <div className="text-2xl font-bold text-purple-400">{roi.healthcareWorkers.toLocaleString()}</div>
-              <div className="text-sm text-gray-300">Healthcare Workers</div>
-            </div>
-            <div className="bg-slate-700 p-4 rounded-lg text-center">
-              <div className="text-2xl font-bold text-orange-400">{roi.roiMultiplier}x</div>
-              <div className="text-sm text-gray-300">ROI Multiplier</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };

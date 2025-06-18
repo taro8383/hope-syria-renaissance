@@ -3,22 +3,24 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import Interactive3DSyriaMap from '@/components/Interactive3DSyriaMap';
 
+import { HEALTH_STATS, SOURCES } from '@/data/healthStats';
+
 const CrisisSection = () => {
   const crisisData = [
     {
       title: 'Healthcare Infrastructure Damage',
       metrics: [
-        { label: 'Hospitals Damaged/Destroyed', value: 43, total: 100, color: 'bg-red-500' },
-        { label: 'Primary Healthcare Centers Functional', value: 23, total: 100, color: 'bg-orange-500' },
-        { label: 'Medical Equipment Operational', value: 15, total: 100, color: 'bg-yellow-500' }
+        { label: 'Hospitals Destroyed', value: HEALTH_STATS.hospitals.destroyed, total: 100, color: 'bg-red-500' },
+        { label: 'Hospitals Damaged', value: HEALTH_STATS.hospitals.damaged, total: 100, color: 'bg-orange-500' },
+        { label: 'Hospitals Functional', value: HEALTH_STATS.hospitals.functional, total: 100, color: 'bg-yellow-500' }
       ]
     },
     {
-      title: 'Human Resources Crisis',
+      title: 'Human Resources Crisis (vs Pre-War)',
       metrics: [
-        { label: 'Doctors Remaining in Syria', value: 30, total: 100, color: 'bg-blue-500' },
-        { label: 'Nurses Available', value: 40, total: 100, color: 'bg-purple-500' },
-        { label: 'Specialized Healthcare Workers', value: 20, total: 100, color: 'bg-pink-500' }
+        { label: 'Doctors Remaining', value: HEALTH_STATS.workers.doctors.current, total: HEALTH_STATS.workers.doctors.preWar, color: 'bg-blue-500' },
+        { label: 'Nurses Remaining', value: HEALTH_STATS.workers.nurses.current, total: HEALTH_STATS.workers.nurses.preWar, color: 'bg-purple-500' },
+        { label: 'Specialists Remaining', value: HEALTH_STATS.workers.specialists.current, total: HEALTH_STATS.workers.specialists.preWar, color: 'bg-pink-500' }
       ]
     },
     {
@@ -57,8 +59,13 @@ const CrisisSection = () => {
               {section.metrics.map((metric, metricIndex) => (
                 <div key={metricIndex}>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-300">{metric.label}</span>
-                    <span className="text-sm font-medium text-white">{metric.value}%</span>
+                  <span className="text-sm text-gray-300">{metric.label}</span>
+                  <span className="text-sm font-medium text-white">
+                    {metric.label.includes('Destroyed') ? HEALTH_STATS.hospitals.destroyed :
+                     metric.label.includes('Damaged') ? HEALTH_STATS.hospitals.damaged :
+                     metric.label.includes('Functional') ? HEALTH_STATS.hospitals.functional :
+                     metric.value}%
+                  </span>
                   </div>
                   <Progress 
                     value={metric.value} 

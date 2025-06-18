@@ -18,23 +18,23 @@ const SpeedComparisonChart = () => {
   const categories: SpeedData[] = [
     {
       name: "Diagnostic Equipment",
-      ascenBio: { time: 2, unit: "weeks", color: "#10B981" },
+      ascenBio: { time: 4, unit: "weeks", color: "#10B981" },
       traditional: { time: 8, unit: "months", color: "#EF4444" }
     },
     {
       name: "Modular Clinics", 
-      ascenBio: { time: 3, unit: "weeks", color: "#10B981" },
+      ascenBio: { time: 2, unit: "months", color: "#10B981" },
       traditional: { time: 12, unit: "months", color: "#EF4444" }
     },
     {
       name: "Medical Equipment",
-      ascenBio: { time: 2.5, unit: "weeks", color: "#10B981" },
+      ascenBio: { time: 4, unit: "weeks", color: "#10B981" },
       traditional: { time: 6, unit: "months", color: "#EF4444" }
     },
     {
       name: "Training Programs",
-      ascenBio: { time: 1, unit: "weeks", color: "#10B981" },
-      traditional: { time: 4, unit: "months", color: "#EF4444" }
+      ascenBio: { time: 1, unit: "months", color: "#10B981" },
+      traditional: { time: 8, unit: "months", color: "#EF4444" }
     }
   ];
 

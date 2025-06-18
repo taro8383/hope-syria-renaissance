@@ -430,25 +430,13 @@ const Interactive3DSyriaMap = ({
           </Button>
         </div>
         
-        {/* Persuasion Elements */}
-        <div className="grid md:grid-cols-3 gap-2 mb-4">
-          <Badge variant="outline" className="text-teal-400 border-teal-400 justify-center">
-            THE ONLY PARTNER WITH DIRECT CHINESE MANUFACTURER ACCESS
-          </Badge>
-          <Badge variant="outline" className="text-blue-400 border-blue-400 justify-center">
-            TRUSTED BY 140+ MANUFACTURERS
-          </Badge>
-          <Badge variant="outline" className="text-green-400 border-green-400 justify-center">
-            RECOGNIZED BY WHO SUPPLIERS
-          </Badge>
-        </div>
       </CardHeader>
       
       <CardContent>
-        {/* 3D Map Visualization */}
+        {/* 3D Map Visualization - Responsive */}
         <div 
           ref={mapRef}
-          className="relative bg-slate-900 rounded-lg p-8 mb-6 h-96 overflow-hidden"
+          className="relative bg-slate-900 rounded-lg p-4 md:p-8 mb-6 h-auto min-h-[400px] md:h-96 overflow-hidden pb-32 md:pb-0"
           style={{
             background: 'linear-gradient(45deg, #1e293b 0%, #334155 100%)',
             perspective: '1000px'
@@ -459,48 +447,49 @@ const Interactive3DSyriaMap = ({
             <div className="w-full h-full bg-gradient-to-br from-slate-600 to-slate-800 rounded-lg"></div>
           </div>
           
-          {/* Governorate 3D Blocks */}
-          {getCurrentData().map((governorate, index) => (
-            <div
-              key={governorate.name}
-              className="absolute transition-all duration-1000 cursor-pointer transform hover:scale-110"
-              style={{
-                left: `${governorate.coordinates.x}%`,
-                top: `${governorate.coordinates.y}%`,
-                transform: 'translateZ(0) rotateX(45deg)',
-                transformStyle: 'preserve-3d'
-              }}
-              onClick={() => {
-                setSelectedGovernorate(governorate);
-                onGovernorateClick?.(governorate.name);
-              }}
-            >
+          {/* Governorate 3D Blocks - Improved Layout */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 p-4">
+            {getCurrentData().map((governorate, index) => (
               <div
-                className={`w-12 ${getHeightClass(governorate.height)} rounded transition-all duration-1000`}
-                style={{ backgroundColor: governorate.color }}
+                key={governorate.name}
+                className="relative transition-all duration-300 cursor-pointer group"
+                onClick={() => {
+                  setSelectedGovernorate(governorate);
+                  onGovernorateClick?.(governorate.name);
+                }}
               >
-                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs text-white font-medium whitespace-nowrap">
-                  {governorate.name}
-                </div>
-                {selectedLayer === 'deployment' && governorate.deploymentPhase && (
-                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 text-xs text-white bg-slate-700 px-1 rounded">
-                    Phase {governorate.deploymentPhase}
+                <div
+                  className={`w-full ${getHeightClass(governorate.height)} rounded transition-all duration-300 
+                    group-hover:scale-105 group-hover:z-10 group-hover:shadow-lg`}
+                  style={{ 
+                    backgroundColor: governorate.color,
+                    transform: 'translateZ(0) rotateX(45deg)',
+                    transformStyle: 'preserve-3d'
+                  }}
+                >
+                  <div className="absolute -top-6 left-0 right-0 text-center text-xs text-white font-medium truncate px-1">
+                    {governorate.name}
                   </div>
-                )}
+                  {selectedLayer === 'deployment' && governorate.deploymentPhase && (
+                    <div className="absolute -bottom-4 left-0 right-0 text-center text-xs text-white bg-slate-700 px-1 rounded mx-auto w-max">
+                      Phase {governorate.deploymentPhase}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
           
-          {/* Crisis Overlay Messages */}
+          {/* Crisis Message - Bottom Positioned */}
           {selectedLayer === 'crisis' && (
-            <div className="absolute top-4 left-4 text-red-400 text-sm font-bold animate-pulse">
+            <div className="absolute bottom-4 left-0 w-full text-center text-red-400 text-xs md:text-sm font-bold animate-pulse z-20 px-4">
               DELAYED DEPLOYMENT = 47 MORE LIVES AT RISK DAILY
             </div>
           )}
 
-          {/* Deployment Strategy Legend */}
+          {/* Deployment Strategy Legend - Final Positioning */}
           {selectedLayer === 'deployment' && (
-            <div className="absolute top-4 right-4 bg-slate-800 p-3 rounded text-xs text-white">
+            <div className="absolute bottom-4 right-4 md:bottom-4 md:right-4 md:top-auto bg-slate-800 p-3 rounded text-xs text-white z-20">
               <div className="font-bold mb-2">Deployment Phases:</div>
               <div className="flex items-center mb-1">
                 <div className="w-3 h-3 bg-green-500 rounded mr-2"></div>

@@ -18,12 +18,12 @@ const AscenBioSolution = () => {
         'Quality assurance from certified manufacturer partnerships',
         'Immediate access to essential medical equipment'
       ],
-      metrics: {
+    metrics: {
         suppliers: '140+',
         timeAdvantage: '75% faster',
-        costSavings: '30-40%',
+        costSavings: '20-30%',
         qualityScore: '98%'
-      }
+    }
     },
     technical: {
       title: 'Technical Service Excellence',
@@ -144,7 +144,7 @@ const AscenBioSolution = () => {
               <div className="text-sm text-gray-300">Faster Deployment</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-400 mb-2">30-40%</div>
+              <div className="text-3xl font-bold text-green-400 mb-2">20-30%</div>
               <div className="text-sm text-gray-300">Cost Savings</div>
             </div>
             <div className="text-center">

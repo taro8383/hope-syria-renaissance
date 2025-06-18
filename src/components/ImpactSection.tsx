@@ -3,20 +3,20 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Slider } from '@/components/ui/slider';
 import TransformationDashboard from '@/components/TransformationDashboard';
+import { HEALTH_STATS, SOURCES } from '@/data/healthStats';
 
 const ImpactSection = () => {
   const [investmentAmount, setInvestmentAmount] = useState([400]);
 
   const calculateImpact = (investment) => {
-    const base = investment / 100; // Base calculation
     return {
-      livesSaved: Math.round(base * 125000), // 125,000 lives per $100M
-      facilitiesOperational: Math.round(base * 50), // 50 facilities per $100M
-      healthcareWorkers: Math.round(base * 1250), // 1,250 workers per $100M
-      peopleServed: Math.round(base * 2500000), // 2.5M people per $100M
-      jobsCreated: Math.round(base * 15000), // 15,000 jobs per $100M
-      gdpImpact: (base * 0.8).toFixed(1), // 0.8% GDP impact per $100M
-      roiMultiplier: (3.2 + (investment / 1000)).toFixed(1) // ROI increases with scale
+      livesSaved: HEALTH_STATS.projections.livesSaved(investment),
+      facilitiesOperational: HEALTH_STATS.projections.facilities(investment),
+      healthcareWorkers: Math.round(investment * 12.5), // 12.5 workers per $1M
+      peopleServed: Math.round(investment * 25000), // 25,000 people per $1M
+      jobsCreated: Math.round(investment * 150), // 150 jobs per $1M
+      gdpImpact: (investment * 0.008).toFixed(1), // 0.8% GDP impact per $100M
+      roiMultiplier: HEALTH_STATS.projections.roiMultiplier(investment)
     };
   };
 
@@ -213,6 +213,10 @@ const ImpactSection = () => {
           </div>
         </CardContent>
       </Card>
+
+      <div className="text-xs text-gray-500 mt-8 text-center">
+        Projections based on {SOURCES.WHO} and {SOURCES.WORLD_BANK} models
+      </div>
     </div>
   );
 };

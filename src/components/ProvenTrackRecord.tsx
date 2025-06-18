@@ -22,7 +22,7 @@ const ProvenTrackRecord = () => {
         costReduction: '40%'
       },
       logistics: 'Complex mountain terrain navigation, seasonal weather challenges',
-      image: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=400&h=250&fit=crop'
+      image: new URL("../../assets/images/Afganistan.jpg", import.meta.url).href
     },
     {
       id: 'venezuela-crisis',
@@ -38,7 +38,7 @@ const ProvenTrackRecord = () => {
         costReduction: '35%'
       },
       logistics: 'Political instability navigation, currency fluctuation management',
-      image: 'https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?w=400&h=250&fit=crop'
+      image: new URL("../../assets/images/Liberia.jpeg", import.meta.url).href
     },
     {
       id: 'peru-amazon',
@@ -54,7 +54,7 @@ const ProvenTrackRecord = () => {
         costReduction: '45%'
       },
       logistics: 'River transportation, seasonal flooding, indigenous protocols',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop'
+      image: new URL("../../assets/images/Yemen.jpg", import.meta.url).href
     }
   ];
 

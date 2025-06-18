@@ -9,21 +9,21 @@ const SolutionSection = () => {
       challenge: 'Post-Ebola healthcare reconstruction',
       solution: 'Modular healthcare facilities with integrated supply chains',
       outcome: '400% increase in healthcare capacity within 18 months',
-      image: 'https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?w=400&h=250&fit=crop'
+      image: new URL("../../assets/images/Liberia.jpeg", import.meta.url).href
     },
     {
       country: 'Yemen',
       challenge: 'Conflict zone medical supply delivery',
       solution: 'Climate-resilient mobile clinics and drone delivery',
       outcome: 'Reached 2.5M people in previously inaccessible areas',
-      image: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop'
+      image: new URL("../../assets/images/Yemen.jpg", import.meta.url).href
     },
     {
       country: 'Afghanistan',
       challenge: 'Maternal healthcare in remote regions',
       solution: 'Solar-powered birthing centers with telemedicine',
       outcome: '60% reduction in maternal mortality rates',
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=400&h=250&fit=crop'
+      image: new URL("../../assets/images/Afganistan.jpg", import.meta.url).href
     }
   ];
 

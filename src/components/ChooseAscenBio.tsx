@@ -9,8 +9,8 @@ const ChooseAscenBio = () => {
       approach: 'System rebuilding',
       timeline: 'Immediate deployment',
       focus: 'Sustainable capacity',
-      experience: 'System-building expertise',
-      advantage: '15+ challenging markets'
+      experience: 'Proven in +5 challenging markets',
+      advantage: 'Battle-tested expertise'
     },
     traditional: {
       approach: 'Product selling',
@@ -68,14 +68,20 @@ const ChooseAscenBio = () => {
 
       {/* Download Section */}
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-bold text-white mb-6">Start Your Partnership</h3>
+        <h3 className="text-3xl font-bold text-white mb-6">Learn more</h3>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-          Partner with AscenBio for comprehensive healthcare ecosystem development.
+          Discover how we can transform Syrian Healthcare together.
         </p>
-        <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-12 py-4 text-lg">
-          Download the Full Report
-        </Button>
-        <p className="text-gray-400 mt-4">Comprehensive implementation plan and partnership framework</p>
+        <a 
+          href="/assets/docs/Syria Healthcare System Reconstruction.pdf" 
+          download="Syria Healthcare System Reconstruction.pdf"
+          className="inline-block"
+        >
+          <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-12 py-4 text-lg">
+            Download the Full Report
+          </Button>
+        </a>
+        <p className="text-gray-400 mt-4">Comprehensive implementation plan</p>
       </div>
     </div>
   );

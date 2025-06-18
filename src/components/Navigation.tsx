@@ -37,7 +37,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             className="text-xl font-bold text-teal-400 cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
-            AscenBio Healthcare Solutions
+            AscenBio
           </div>
 
           {/* Desktop Navigation */}

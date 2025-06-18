@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Factory, Plane, Calendar, Truck } from 'lucide-react';
+import { Factory, Plane, Calendar, Truck, Globe } from 'lucide-react';
 
 const SyriaHealthcareFuture = () => {
   const [activeVision, setActiveVision] = useState('reconstruction');
@@ -68,11 +68,11 @@ const SyriaHealthcareFuture = () => {
       capability: "Convincing companies to establish international operations",
       syrianApplication: "Same strategy applicable for Syria manufacturing base"
     },
-    {
-      achievement: "Embassy Partnership Model",
-      example: "Chinese Embassy Argentina technical service official recognition",
-      replication: "Proven framework for Syria embassy collaboration"
-    }
+      {
+        title: "Embassy Partnership Model",
+        description: "Received support from the Buenos Aires Chinese embassy to recognize our technical center as official for Chinese Brands in Latin America",
+        icon: <Globe className="h-8 w-8 text-teal-400" />
+      }
   ];
 
   const medicalTourismProjections = {
@@ -181,16 +181,25 @@ const SyriaHealthcareFuture = () => {
             <div className="grid md:grid-cols-3 gap-6">
               {manufacturingCredentials.map((credential, index) => (
                 <div key={index} className="p-4 bg-slate-700 rounded-lg">
-                  <h5 className="text-orange-400 font-semibold mb-3">{credential.achievement}</h5>
-                  <div className="space-y-2 text-sm text-gray-300">
-                    {credential.location && <p><strong>Location:</strong> {credential.location}</p>}
-                    {credential.scope && <p><strong>Scope:</strong> {credential.scope}</p>}
-                    {credential.status && <p><strong>Status:</strong> {credential.status}</p>}
-                    {credential.capability && <p><strong>Capability:</strong> {credential.capability}</p>}
-                    {credential.syrianApplication && (
-                      <p className="text-teal-300 font-medium">{credential.syrianApplication}</p>
-                    )}
-                  </div>
+                  {credential.title ? (
+                    <>
+                      <h5 className="text-orange-400 font-semibold mb-3">{credential.title}</h5>
+                      <p className="text-sm text-gray-300">{credential.description}</p>
+                    </>
+                  ) : (
+                    <>
+                      <h5 className="text-orange-400 font-semibold mb-3">{credential.achievement}</h5>
+                      <div className="space-y-2 text-sm text-gray-300">
+                        {credential.location && <p><strong>Location:</strong> {credential.location}</p>}
+                        {credential.scope && <p><strong>Scope:</strong> {credential.scope}</p>}
+                        {credential.status && <p><strong>Status:</strong> {credential.status}</p>}
+                        {credential.capability && <p><strong>Capability:</strong> {credential.capability}</p>}
+                        {credential.syrianApplication && (
+                          <p className="text-teal-300 font-medium">{credential.syrianApplication}</p>
+                        )}
+                      </div>
+                    </>
+                  )}
                 </div>
               ))}
             </div>

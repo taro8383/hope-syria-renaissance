@@ -1,137 +1,128 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 const ProductFilter = ({ onFilterChange, products }) => {
-  const [filters, setFilters] = useState({
-    need: 'all',
-    cost: 'all',
-    complexity: 'all',
-    climate: 'all',
-    certification: 'all'
-  });
-
   const filterOptions = {
-    need: [
-      { value: 'all', label: 'All Needs' },
-      { value: 'emergency', label: 'Emergency' },
-      { value: 'medium-term', label: 'Medium-term' },
-      { value: 'long-term', label: 'Long-term' }
+    training: [
+      { value: 'all', label: 'All Training' },
+      { value: 'Minimal', label: 'Minimal' },
+      { value: 'Moderate', label: 'Moderate' },
+      { value: 'Advanced', label: 'Advanced' }
     ],
-    cost: [
-      { value: 'all', label: 'All Costs' },
-      { value: 'low', label: '<$1K' },
-      { value: 'medium', label: '$1K-$10K' },
-      { value: 'high', label: '$10K+' }
-    ],
-    complexity: [
-      { value: 'all', label: 'All Complexity' },
-      { value: 'minimal', label: 'Minimal Training' },
-      { value: 'moderate', label: 'Moderate Training' },
-      { value: 'advanced', label: 'Advanced Training' }
-    ],
-    climate: [
-      { value: 'all', label: 'All Climate' },
-      { value: 'heat-stable', label: 'Heat-stable' },
-      { value: 'cold-chain', label: 'Cold-chain' },
-      { value: 'all-weather', label: 'All-weather' }
+    temperature: [
+      { value: 'all', label: 'All Temperatures' },
+      { value: 'Heat stable', label: 'Heat stable' },
+      { value: 'Cold chain required', label: 'Cold chain' }
     ],
     certification: [
       { value: 'all', label: 'All Certifications' },
-      { value: 'WHO', label: 'WHO Prequalified' },
-      { value: 'FDA', label: 'FDA/CE Approved' },
-      { value: 'other', label: 'Other Standards' }
+      { value: 'WHO Prequalified', label: 'WHO Prequalified' },
+      { value: 'CE', label: 'CE Marked' },
+      { value: 'FDA', label: 'FDA Approved' },
+      { value: 'UNICEF', label: 'UNICEF Approved' },
+      { value: 'NGO', label: 'NGO Recommended' },
+      { value: 'Experience', label: 'Field Experience' }
     ]
   };
 
-  const applyFilters = (newFilters) => {
-    let filtered = [...products];
+  const [activeFilters, setActiveFilters] = useState({
+    training: 'all',
+    temperature: 'all',
+    certification: 'all'
+  });
 
-    // Apply cost filter
-    if (newFilters.cost !== 'all') {
+  const applyFilters = (filterType, value) => {
+    setActiveFilters(prev => ({...prev, [filterType]: value}));
+    
+    let filtered = [...products];
+    if (value !== 'all') {
       filtered = filtered.filter(product => {
-        if (newFilters.cost === 'low') return product.cost < 1000;
-        if (newFilters.cost === 'medium') return product.cost >= 1000 && product.cost <= 10000;
-        if (newFilters.cost === 'high') return product.cost > 10000;
+        if (filterType === 'training') return product.training === value;
+        if (filterType === 'temperature') return product.temperature === value;
+        if (filterType === 'certification') return product.certifications.includes(value);
         return true;
       });
     }
-
-    // Apply complexity filter
-    if (newFilters.complexity !== 'all') {
-      filtered = filtered.filter(product => product.trainingRequired === newFilters.complexity);
-    }
-
-    // Apply certification filter
-    if (newFilters.certification !== 'all') {
-      filtered = filtered.filter(product => 
-        product.certifications.includes(newFilters.certification)
-      );
-    }
-
     onFilterChange(filtered);
   };
 
-  const updateFilter = (filterType, value) => {
-    const newFilters = { ...filters, [filterType]: value };
-    setFilters(newFilters);
-    applyFilters(newFilters);
-  };
-
-  const clearFilters = () => {
-    const clearedFilters = {
-      need: 'all',
-      cost: 'all',
-      complexity: 'all',
-      climate: 'all',
-      certification: 'all'
-    };
-    setFilters(clearedFilters);
+  const clearAllFilters = () => {
     onFilterChange(products);
   };
 
   return (
-    <Card className="bg-slate-800 border-slate-700 mb-8">
-      <CardHeader>
-        <div className="flex justify-between items-center">
-          <CardTitle className="text-white">Advanced Filters</CardTitle>
-          <Button variant="outline" size="sm" onClick={clearFilters}>
-            Clear All
-          </Button>
-        </div>
+    <Card className="bg-slate-800 border-slate-700">
+      <CardHeader className="flex justify-between items-center">
+        <CardTitle className="text-white">Filters</CardTitle>
+        <Button 
+          variant="ghost" 
+          onClick={clearAllFilters}
+          className="text-teal-400 hover:text-teal-300 hover:bg-slate-700"
+        >
+          Clear All
+        </Button>
       </CardHeader>
-      <CardContent>
-        <div className="grid md:grid-cols-5 gap-4">
-          {Object.entries(filterOptions).map(([filterType, options]) => (
-            <div key={filterType} className="space-y-2">
-              <label className="text-sm font-medium text-gray-300 capitalize">
-                {filterType === 'need' ? 'By Need' : 
-                 filterType === 'cost' ? 'By Cost' :
-                 filterType === 'complexity' ? 'Training' :
-                 filterType === 'climate' ? 'Climate' :
-                 'Certification'}
-              </label>
-              <div className="space-y-1">
-                {options.map((option) => (
-                  <Button
-                    key={option.value}
-                    variant={filters[filterType] === option.value ? "default" : "ghost"}
-                    size="sm"
-                    className={`w-full justify-start text-xs ${
-                      filters[filterType] === option.value
-                        ? 'bg-teal-600 hover:bg-teal-700'
-                        : 'text-gray-300 hover:bg-slate-700'
-                    }`}
-                    onClick={() => updateFilter(filterType, option.value)}
-                  >
-                    {option.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          ))}
+      <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+
+        {/* Training Filter */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-300 capitalize truncate">Training</label>
+          <div className="space-y-1">
+            {filterOptions.training.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => applyFilters('training', option.value)}
+                className={`inline-flex items-center gap-2 font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3 w-full justify-start text-xs truncate ${
+                  activeFilters.training === option.value 
+                    ? 'text-primary-foreground bg-teal-600 hover:bg-teal-700' 
+                    : 'text-gray-300 hover:bg-slate-700'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Temperature Filter */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-300 capitalize truncate">Temperature</label>
+          <div className="space-y-1">
+            {filterOptions.temperature.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => applyFilters('temperature', option.value)}
+                className={`inline-flex items-center gap-2 font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3 w-full justify-start text-xs truncate ${
+                  activeFilters.temperature === option.value 
+                    ? 'text-primary-foreground bg-teal-600 hover:bg-teal-700' 
+                    : 'text-gray-300 hover:bg-slate-700'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Certification Filter */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-300 capitalize truncate">Certification</label>
+          <div className="space-y-1">
+            {filterOptions.certification.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => applyFilters('certification', option.value)}
+                className={`inline-flex items-center gap-2 font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3 w-full justify-start text-xs truncate ${
+                  activeFilters.certification === option.value 
+                    ? 'text-primary-foreground bg-teal-600 hover:bg-teal-700' 
+                    : 'text-gray-300 hover:bg-slate-700'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
         </div>
       </CardContent>
     </Card>

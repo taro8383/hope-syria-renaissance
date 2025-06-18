@@ -52,24 +52,24 @@ const ProvenTrackRecordSection = () => {
         'Real-time inventory management systems'
       ]
     },
-    {
-      category: 'Partnership Building',
-      examples: [
-        'University collaboration frameworks',
-        'Government relationship development',
-        'Community engagement protocols',
-        'Professional network establishment'
-      ]
-    },
-    {
-      category: 'Localization Expertise',
-      examples: [
-        'Cultural adaptation methodologies',
-        'Regulatory compliance navigation',
-        'Local workforce development',
-        'Sustainable operation frameworks'
-      ]
-    }
+      {
+        title: "Afghanistan",
+        description: "Established emergency healthcare supply chain during crisis",
+        image: new URL("../../assets/images/Afganistan.jpg", import.meta.url).href,
+        stats: "85% coverage"
+      },
+      {
+        title: "Liberia",
+        description: "Rapid deployment of medical equipment during Ebola outbreak",
+        image: new URL("../../assets/images/Liberia.jpeg", import.meta.url).href,
+        stats: "60% cost reduction"
+      },
+      {
+        title: "Yemen",
+        description: "Sustained medical supply through conflict",
+        image: new URL("../../assets/images/Yemen.jpg", import.meta.url).href,
+        stats: "70% reliability"
+      }
   ];
 
   return (
@@ -119,26 +119,49 @@ const ProvenTrackRecordSection = () => {
         </div>
       </div>
 
-      {/* Capability Showcase */}
-      <div className="grid md:grid-cols-3 gap-8">
-        {capabilities.map((capability, index) => (
-          <Card key={index} className="bg-slate-800 border-slate-700">
-            <CardHeader>
-              <CardTitle className="text-white text-xl text-center">{capability.category}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-3">
-                {capability.examples.map((example, exampleIndex) => (
-                  <li key={exampleIndex} className="flex items-start text-gray-300">
-                    <span className="w-2 h-2 bg-teal-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span className="text-sm">{example}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ))}
+      {/* Global Success Stories */}
+      <div className="mb-16">
+        <h3 className="text-3xl font-bold text-white mb-8 text-center">Global Success Stories</h3>
+        <div className="grid lg:grid-cols-3 gap-8">
+          {capabilities.slice(1).map((story, index) => (
+            <Card key={index} className="bg-slate-800 border-slate-700 hover:bg-slate-700 transition-all duration-300">
+              <CardHeader>
+                <CardTitle className="text-white text-lg">{story.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <img 
+                  src={story.image} 
+                  alt={story.title}
+                  className="w-full h-48 object-cover rounded-lg"
+                />
+                <div>
+                  <p className="text-sm text-gray-300">{story.description}</p>
+                </div>
+                <div className="text-sm font-semibold text-teal-400">
+                  {story.stats}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
+
+      {/* Capability Showcase */}
+      <Card className="bg-slate-800 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white text-xl text-center">{capabilities[0].category}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-3">
+            {capabilities[0].examples.map((example, exampleIndex) => (
+              <li key={exampleIndex} className="flex items-start text-gray-300">
+                <span className="w-2 h-2 bg-teal-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span className="text-sm">{example}</span>
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     </div>
   );
 };

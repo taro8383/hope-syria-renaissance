@@ -25,7 +25,7 @@ const ChooseAscenBioSection = () => {
     },
     {
       aspect: 'Experience',
-      ascenbio: 'Proven in challenging markets',
+      ascenbio: 'Proven in +5 challenging markets',
       traditional: 'Starting from scratch',
       advantage: 'Battle-tested expertise'
     }
@@ -73,14 +73,14 @@ const ChooseAscenBioSection = () => {
 
       {/* Download Section */}
       <div className="text-center mb-8">
-        <h3 className="text-3xl font-bold text-white mb-6">Start Your Partnership</h3>
+        <h3 className="text-3xl font-bold text-white mb-6">Learn more</h3>
         <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-          Partner with AscenBio for comprehensive healthcare ecosystem development.
+          Discover how AscenBio can transform healthcare in your region.
         </p>
         <Button size="lg" className="bg-teal-600 hover:bg-teal-700 text-white px-12 py-4 text-lg">
           Download the Full Report
         </Button>
-        <p className="text-gray-400 mt-4">Comprehensive implementation plan and partnership framework</p>
+        <p className="text-gray-400 mt-4">Comprehensive implementation plan</p>
       </div>
     </div>
   );

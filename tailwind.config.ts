@@ -92,5 +92,20 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }) {
+			addUtilities({
+				'.hyphens-auto': {
+					'hyphens': 'auto',
+					'-webkit-hyphens': 'auto',
+					'-ms-hyphens': 'auto',
+				},
+				'.break-word': {
+					'overflow-wrap': 'break-word',
+					'word-break': 'break-word',
+				}
+			})
+		}
+	],
 } satisfies Config;
